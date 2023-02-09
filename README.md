@@ -1,1 +1,1 @@
-# openbadgx
+# OpenBadgeX
