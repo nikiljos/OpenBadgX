@@ -1,17 +1,17 @@
-# OpenBadgeX
+# OpenBadgX
 
-Progress Tracking
+### Progress Tracking
 |Content|Status|PR Link|
 |-----|-----|------|
 |**Back-end**|👇|🔗|
-|NodeJs - setting up a project with package.json||[-](#)|
+|NodeJs - setting up a project with package.json|✔️|[#1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
 |NodeJS Modules||[-](#)|
 |fs Module||[-](#)|
 |Streams and Buffers||[-](#)|
-|NPM||[-](#)|
-|Nodemon||[-](#)|
+|NPM|✔️|[#1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
+|Nodemon|✔️|[#1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
 |Events in Nodejs||[-](#)|
-|Express JS - first route||[-](#)|
+|Express JS - first route|✔️|[#1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
 |ExpressJS - additional routes||[-](#)|
 |Template Engines||[-](#)|
 |Partials||[-](#)|
