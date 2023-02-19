@@ -10,9 +10,15 @@ const userSchema=new Schema({
     },
     isActive:{
         type:Boolean
-    }
+    },
+    loginMethod:[
+        {
+            type:String,
+            enum:["google"]
+        }
+    ]
 },{
     timestamps:true
 })
 
-export default model("user", userSchema);
+export default model("users", userSchema);
