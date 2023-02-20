@@ -15,13 +15,13 @@
 |ExpressJS - additional routes||[-](#)|
 |Template Engines||[-](#)|
 |Partials||[-](#)|
-|Middlewares||[-](#)|
+|Middlewares|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |**Databases**|👇|🔗|
-|MongoDB - Installations and Basics||[-](#)|
-|Mongoose||[-](#)|
+|MongoDB - Installations and Basics|✔️|[-](#)|
+|Mongoose|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |CRUD Operations||[-](#)|
 |Simple API - CRUD Operations using NodeJs||[-](#)|
-|Schemas and Models||[-](#)|
+|Schemas and Models|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |**Front-end**|👇|🔗|
 |High-fid design for your application||[-](#)|
 |ReactJS app initialization||[-](#)|
@@ -31,6 +31,13 @@
 |IDE Setup||[-](#)|
 |NodeJs REPL||[-](#)|
 |Using the public folder to serve files||[-](#)|
-|Postman Use for Testing||[-](#)|
-|Authentication||[-](#)|
+|Postman Use for Testing|✔️|[-](#)|
+|Authentication|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |Deployment||[-](#)|
+|**Extra Topics**|👇|🔗|
+|Type Interface|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|Type Declaration Merging|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|`dotenv`|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|Google OAuth|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|JWT|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|...||[-](#)|
