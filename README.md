@@ -24,7 +24,7 @@
 |Schemas and Models|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |**Front-end**|👇|🔗|
 |High-fid design for your application||[-](#)|
-|ReactJS app initialization||[-](#)|
+|ReactJS app initialization|✔️|[#3](https://github.com/kalviumcommunity/openbadgx/pull/3)|
 |Application components created||[-](#)|
 |Application deployed||[-](#)|
 |**Full-Stack**|👇|🔗|
@@ -40,4 +40,5 @@
 |`dotenv`|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |Google OAuth|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |JWT|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|React Router|✔️|[#3](https://github.com/kalviumcommunity/openbadgx/pull/3)|
 |...||[-](#)|
