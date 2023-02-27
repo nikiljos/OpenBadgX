@@ -5,18 +5,14 @@ import jwt from "../utils/jwt"
 const googleAuth=async (req:Request,res:Response,next:NextFunction)=>{
     let {gAuthToken}=req.body;
     let gData=await checkGoogleAuth(gAuthToken)
-    .catch(err=>{
-        next(err)
-    })
+
     let user=gData&&await checkUser(gData.email,gData.name,gData.picture)
-    .catch(err=>{
-        next(err)
-    })
+
     let accessToken=user&&await jwt.generateToken(user)
-    .catch(err=>next(err))
+    
     accessToken&&res.status(200).send({
         status:true,
-        message:"Pong",
+        message:"Authentication Successfull!",
         data:{
             accessToken
         }

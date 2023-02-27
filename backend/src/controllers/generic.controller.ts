@@ -1,6 +1,6 @@
 import { Request,Response } from "express";
 
-const ping=(req:Request,res:Response)=>{
+const ping=async (req:Request,res:Response)=>{
     res.status(200).send({
         status:true,
         message:"Pong"
