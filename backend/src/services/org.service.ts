@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import Org from "../models/org.model";
 
 const createOrg = (key: string, name: string, admin: string) =>
