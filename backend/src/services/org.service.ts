@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 import Org from "../models/org.model";
 
 const createOrg = (key: string, name: string, admin: string) =>
@@ -26,7 +27,7 @@ const isKeyAvailable = (key: string) =>
                 if (!data) {
                     resolve(true);
                 } else {
-                    reject("Key already used");
+                    reject(new Error("Key already used"));
                 }
             })
             .catch((err) => reject(err));
@@ -38,8 +39,26 @@ const listOrgs = (adminId: string) =>
     })
     .select("key name");
 
+const isOrgAdmin=(org:string,user:string)=>new Promise((resolve,reject)=>{
+    Org.findOne({
+        _id:org,
+        admin:user
+    })
+    .then(data=>{
+        console.log(data)
+        if(!data){
+            reject(new Error("Sorry, you are not the admin!"))
+        }
+        else{
+            resolve(true)
+        }
+    })
+    .catch(err=>reject(err))
+})
+
 export default {
     createOrg,
     isKeyAvailable,
-    listOrgs
+    listOrgs,
+    isOrgAdmin
 };

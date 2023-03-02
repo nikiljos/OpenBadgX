@@ -10,10 +10,11 @@ import db from "./db.config";
 db.init();
 
 import router from "./routers/index";
+import errorHandler from "./middlewares/error.middleware";
 
 app.use(cors())
-app.use(express.json())
 app.use(router);
+app.use(errorHandler)
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

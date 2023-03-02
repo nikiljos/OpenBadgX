@@ -9,11 +9,25 @@ const userAuth=(req:Request,res:Response,next:NextFunction)=>{
     jwt.checkToken(token)
         .then((data) => {
             res.locals.userId = data.userId;
+            if(data.orgId){
+                res.locals.orgLogin=true;
+                res.locals.orgId=data.orgId;
+            }
             next()
         })
         .catch((err) => next(new Error("Invalid Token")));
 }
 
+const orgAuth=(req:Request,res:Response,next:NextFunction)=>{
+    if(res.locals.orgLogin){
+        next();
+    }
+    else{
+        next(new Error("Please login to an org!"))
+    }
+}
+
 export default {
-    userAuth
+    userAuth,
+    orgAuth
 }

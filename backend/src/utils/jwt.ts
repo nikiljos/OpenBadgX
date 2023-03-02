@@ -8,11 +8,12 @@ declare module "jsonwebtoken" {
     }
 }
 
-const generateToken = (userId:string) =>
+const generateToken = (userId:string,org?:string) =>
     new Promise((resolve, reject) => {
         jwt.sign(
             {
                 userId,
+                orgId:org||null
             },
             jwtSecret,
             {

@@ -26,6 +26,7 @@ const Login = () => {
       })
       .catch((err) => console.log("Erorr in custom login", err));
   }
+  console.log(token)
   return (
     <div>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
