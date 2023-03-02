@@ -11,7 +11,7 @@ const googleAuth=async (req:Request,res:Response,next:NextFunction)=>{
     let accessToken=user&&await jwt.generateToken(user)
     
     accessToken&&res.status(200).send({
-        status:true,
+        success:true,
         message:"Authentication Successfull!",
         data:{
             accessToken

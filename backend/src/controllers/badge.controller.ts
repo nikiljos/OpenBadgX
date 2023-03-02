@@ -6,7 +6,7 @@ const createBadge=async (req:Request,res:Response)=>{
     let {orgId}=res.locals;
     let badgeId=await badgeService.createBadge(title,desc,orgId)
     res.status(200).send({
-        status:true,
+        success:true,
         message:"Badge/Cert created successfully!",
         data:{
             badgeId
