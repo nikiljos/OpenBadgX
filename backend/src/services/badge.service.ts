@@ -11,7 +11,7 @@ const createBadge=(title:string,desc:string,org:string)=>new Promise((resolve,re
             resolve(data._id)
         }
         else{
-            reject("Unable to create")
+            reject(new Error("Unable to create"))
         }
     })
     .catch(err=>reject(err))
