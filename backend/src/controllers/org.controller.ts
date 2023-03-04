@@ -31,12 +31,13 @@ const listOrg=async (req:Request,res:Response)=>{
 const loginOrg=async (req:Request,res:Response)=>{
     let {userId}=res.locals
     let {orgId}=req.body
-    let ownerStatus=await orgService.isOrgAdmin(orgId,userId);
-    let token=ownerStatus&&await jwt.generateToken(userId,orgId);
+    let orgDetail=await orgService.isOrgAdmin(orgId,userId);
+    let token=orgDetail&&await jwt.generateToken(userId,orgId);
     res.status(200).send({
         success:true,
         data:{
-            accessToken:token
+            accessToken:token,
+            orgDetail
         }
     })
 }

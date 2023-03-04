@@ -43,14 +43,14 @@ const isOrgAdmin=(org:string,user:string)=>new Promise((resolve,reject)=>{
     Org.findOne({
         _id:org,
         admin:user
-    })
+    }).select("key name")
     .then(data=>{
         console.log(data)
         if(!data){
             reject(new Error("Sorry, you are not the admin!"))
         }
         else{
-            resolve(true)
+            resolve(data)
         }
     })
     .catch(err=>reject(err))

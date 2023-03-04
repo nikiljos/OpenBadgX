@@ -14,6 +14,17 @@ const createBadge=async (req:Request,res:Response)=>{
     })
 }
 
+const listBadge=async (req:Request,res:Response)=>{
+    let { orgId } = res.locals;
+    let badgeList=await badgeService.listBadge(orgId)
+    res.status(200).send({
+        success:true,
+        message:"Badge List",
+        data:badgeList
+    })
+}
+
 export default {
-    createBadge
+    createBadge,
+    listBadge
 }

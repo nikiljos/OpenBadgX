@@ -17,6 +17,12 @@ const createBadge=(title:string,desc:string,org:string)=>new Promise((resolve,re
     .catch(err=>reject(err))
 })
 
+const listBadge=(org:string)=>Badge.find({
+    org
+})
+.select("title desc")
+
 export default {
-    createBadge
+    createBadge,
+    listBadge
 }

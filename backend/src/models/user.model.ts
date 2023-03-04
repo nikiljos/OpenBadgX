@@ -5,11 +5,17 @@ const userSchema=new Schema({
         type:String,
         required:true
     },
+    name:{
+        type:String
+    },
     password:{
         type:String,
     },
     isActive:{
         type:Boolean
+    },
+    profileImage:{
+        type:String
     },
     loginMethod:[
         {
