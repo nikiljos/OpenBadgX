@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { LoginContext } from '../App'
+import fetchBackend from '../utils/fetchBackend'
 
 const NavBar = () => {
 
@@ -22,17 +23,12 @@ const NavBar = () => {
     (async ()=>{
       console.log("trig")
       if(loginStatus.loggedIn&&!loginStatus.userDetail){
-        let detail = await fetch(`${import.meta.env.VITE_API_URL}/user/detail`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${loginStatus.token}`,
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => data.data)
-          .catch((err) => console.log("err", err));
+        console.log("trigXX");
+        let detail=await fetchBackend("user/detail","GET",loginStatus.token,null)
+        .then(data=>data.data)
+        .catch(err=>console.log("Error: ", err))
         console.log(detail)
-        updateLoginStatus(prev=>({
+        detail&&updateLoginStatus(prev=>({
           ...prev,
           userDetail:detail
         }))
