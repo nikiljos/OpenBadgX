@@ -2,6 +2,7 @@ import { useEffect,useState,useContext } from 'react'
 import { LoginContext } from '../../App'
 import fetchBackend from '../../utils/fetchBackend';
 import LoginPrompt from '../../components/LoginPrompt';
+import { Link } from 'react-router-dom';
 
 const OrgHome = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -27,8 +28,17 @@ const OrgHome = () => {
       <h3>Org Home</h3>
       <h4>{orgDetail.name}</h4>
       <h5>{orgDetail.key}</h5>
+
+      <div className="links">
+        <div>
+          <Link to="/org/badge">View Badges</Link>
+        </div>
+        <div>
+          <Link to="/org/badge/new">Create Badge</Link>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default OrgHome

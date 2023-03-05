@@ -13,6 +13,6 @@ router.use("/",genericRouter)
 router.use("/auth",authRouter)
 router.use("/user", authMiddleware.userAuth,userRouter);
 router.use("/org", authMiddleware.userAuth, orgRouter);
-router.use("/badge", authMiddleware.userAuth,authMiddleware.orgAuth, badgeRouter);
+router.use("/org/badge", authMiddleware.userAuth,authMiddleware.orgAuth, badgeRouter);
 
 export default router

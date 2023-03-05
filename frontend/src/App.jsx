@@ -7,6 +7,8 @@ import NavBar from './components/NavBar';
 import OrgList from './pages/Org/List';
 import OrgHome from './pages/Org/Home';
 import OrgCreate from './pages/Org/Create';
+import OrgBadgeList from './pages/Org/Badge/List';
+import OrgBadgeCreate from './pages/Org/Badge/Create';
 
 export const LoginContext=createContext()
 
@@ -31,6 +33,8 @@ function App() {
           <Route path="/org" element={<OrgList />} />
           <Route path="/org/home" element={<OrgHome />} />
           <Route path="/org/new" element={<OrgCreate />} />
+          <Route path="/org/badge" element={<OrgBadgeList />} />
+          <Route path="/org/badge/new" element={<OrgBadgeCreate />} />
         </Routes>
       </LoginContext.Provider>
     </div>
