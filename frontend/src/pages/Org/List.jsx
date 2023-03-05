@@ -4,10 +4,12 @@ import { LoginContext } from "../../App";
 import LoginPrompt from "../../components/LoginPrompt";
 import "./List.css"
 import { setLocalToken } from "../../utils/localToken";
+import { Link, useNavigate } from "react-router-dom";
 
 const OrgList = () => {
   const [orgList, updateOrgList] = useState([]);
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
+  const navigate=useNavigate()
 
   useEffect(() => {
     if (loginStatus.loggedIn) {
@@ -32,12 +34,15 @@ const OrgList = () => {
       .then((data) => data.data.accessToken)
       .catch((err) => console.log("Error: ", err));
     
-    orgToken&&updateLoginStatus(prev=>({
-      ...prev,
-      orgLogin:true,
-      token:orgToken
-    }))
-    orgToken&&setLocalToken(orgToken)
+    if(orgToken){
+      updateLoginStatus(prev=>({
+        ...prev,
+        orgLogin:true,
+        token:orgToken
+      }))
+      setLocalToken(orgToken)
+      navigate("/org/home")
+    }
   }
 
   if (!loginStatus.loggedIn) {
@@ -53,6 +58,7 @@ const OrgList = () => {
           </div>
         ))}
       </div>
+      <Link to="/org/new">Create Org</Link>
     </div>
   );
 };

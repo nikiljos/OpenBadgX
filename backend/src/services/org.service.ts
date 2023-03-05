@@ -2,7 +2,7 @@ import { rejects } from "assert";
 import Org from "../models/org.model";
 
 const createOrg = (key: string, name: string, admin: string) =>
-    new Promise((resolve, reject) => {
+    new Promise<string>((resolve, reject) => {
         Org.create({
             key,
             name,
@@ -10,7 +10,7 @@ const createOrg = (key: string, name: string, admin: string) =>
         })
             .then((data) => {
                 if (data) {
-                    resolve(data._id);
+                    resolve(data._id.toString());
                 } else {
                     throw new Error("Org Creation Failed");
                 }
@@ -19,7 +19,7 @@ const createOrg = (key: string, name: string, admin: string) =>
     });
 
 const isKeyAvailable = (key: string) =>
-    new Promise((resolve, reject) => {
+    new Promise<boolean>((resolve, reject) => {
         Org.findOne({
             key,
         })
@@ -45,7 +45,7 @@ const isOrgAdmin=(org:string,user:string)=>new Promise((resolve,reject)=>{
         admin:user
     }).select("key name")
     .then(data=>{
-        console.log(data)
+        // console.log(data)
         if(!data){
             reject(new Error("Sorry, you are not the admin!"))
         }

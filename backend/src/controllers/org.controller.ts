@@ -8,12 +8,13 @@ const createOrg=async (req:Request,res:Response)=>{
     
     let validKey=await orgService.isKeyAvailable(key)
     let orgId=validKey&&await orgService.createOrg(key,name,adminUser)
-
+    let token=orgId&&await jwt.generateToken(adminUser,orgId);
     res.status(200).send({
         success:true,
         message:"Org created successfully!",
         data:{
-            id:orgId
+            id:orgId,
+            accessToken:token
         }
     })
 }
