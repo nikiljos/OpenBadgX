@@ -6,8 +6,11 @@ const detail = async (req: Request, res: Response) => {
     let data=await userService.userDetail(res.locals.userId)
     res.status(200).send({
         success: true,
-        message: "Pong",
-        data
+        message: "User details!",
+        data:{
+            userDetail:data,
+            orgLogin:res.locals.orgLogin
+        }
     });
 };
 

@@ -50,15 +50,20 @@ const isOrgAdmin=(org:string,user:string)=>new Promise((resolve,reject)=>{
             reject(new Error("Sorry, you are not the admin!"))
         }
         else{
-            resolve(data)
+            resolve(true)
         }
     })
     .catch(err=>reject(err))
 })
 
+const orgDetail=(orgId:string)=>Org.findOne({
+    _id:orgId
+}).select("name key")
+
 export default {
     createOrg,
     isKeyAvailable,
     listOrgs,
-    isOrgAdmin
+    isOrgAdmin,
+    orgDetail
 };

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import "./Login.css";
 import { LoginContext } from "../App";
 import fetchBackend from "../utils/fetchBackend";
+import { setLocalToken } from "../utils/localToken";
 
 const Login = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -18,7 +19,7 @@ const Login = () => {
         })
           .then((data) => data.data.accessToken)
           .catch((err) => console.log("Error: ", err));
-        console.log(token);
+        // console.log(token);
         if (!token) return;
         updateLoginStatus((prev) => ({
           ...prev,
@@ -28,26 +29,42 @@ const Login = () => {
           userDetail: null,
           orgDetail: null,
         }));
-        window.localStorage.setItem("token", token);
+        setLocalToken(token)
       })();
     }
   }, [gAuth]);
 
-  console.log(loginStatus.token);
+  const logOut=()=>{
+    updateLoginStatus((prev) => ({
+      ...prev,
+      loggedIn: false,
+      token: null,
+      userDetail: null,
+      orgDetail: null,
+    }));
+    setLocalToken(null)
+  }
+
+  // console.log(loginStatus.token);
   return (
     <div>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
         <h2>Login Happens here</h2>
         <div className="detail">
           <Link to="/">Go Home 🏠</Link>
-          <div>{loginStatus.loggedIn ? "Logged In" : "Logged Out"}</div>
         </div>
-        <GoogleLogin
-          onSuccess={updateGAuth}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
+        <div className="login-action">
+          {loginStatus.loggedIn ? (
+            <button onClick={logOut}>Log Out</button>
+          ) : (
+            <GoogleLogin
+              onSuccess={updateGAuth}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          )}
+        </div>
       </GoogleOAuthProvider>
     </div>
   );

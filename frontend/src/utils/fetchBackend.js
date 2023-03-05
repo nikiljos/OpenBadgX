@@ -1,5 +1,6 @@
 const fetchBackend = (route, method, auth, reqBody) =>
   new Promise((resolve, reject) => {
+    console.log("Calling Backend API -->", route, "-->", method);
     let headers = {
       "Content-Type": "application/json",
     };

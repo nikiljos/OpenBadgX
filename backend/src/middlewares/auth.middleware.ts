@@ -13,6 +13,9 @@ const userAuth=(req:Request,res:Response,next:NextFunction)=>{
                 res.locals.orgLogin=true;
                 res.locals.orgId=data.orgId;
             }
+            else{
+                res.locals.orgLogin=false;
+            }
             next()
         })
         .catch((err) => next(new Error("Invalid Token")));

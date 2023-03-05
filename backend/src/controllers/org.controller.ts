@@ -31,19 +31,29 @@ const listOrg=async (req:Request,res:Response)=>{
 const loginOrg=async (req:Request,res:Response)=>{
     let {userId}=res.locals
     let {orgId}=req.body
-    let orgDetail=await orgService.isOrgAdmin(orgId,userId);
-    let token=orgDetail&&await jwt.generateToken(userId,orgId);
+    let verifyAdmin=await orgService.isOrgAdmin(orgId,userId);
+    let token=verifyAdmin&&await jwt.generateToken(userId,orgId);
     res.status(200).send({
         success:true,
         data:{
-            accessToken:token,
-            orgDetail
+            accessToken:token
         }
+    })
+}
+
+const detail=async (req:Request,res:Response)=>{
+    let {orgId}=res.locals
+    let detail=await orgService.orgDetail(orgId)
+    res.status(200).send({
+        success:true,
+        message:"Details fetch successful",
+        data:detail
     })
 }
 
 export default {
     createOrg,
     listOrg,
-    loginOrg
+    loginOrg,
+    detail
 }

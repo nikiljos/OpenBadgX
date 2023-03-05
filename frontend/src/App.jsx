@@ -15,6 +15,7 @@ function App() {
     loggedIn: false,
     token: null,
     userDetail:null,
+    orgLogin:false,
     orgDetail:null
   });
 
