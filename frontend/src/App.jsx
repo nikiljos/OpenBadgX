@@ -28,13 +28,17 @@ function App() {
       <LoginContext.Provider value={{ loginStatus, updateLoginStatus }}>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/org" element={<OrgList />} />
-          <Route path="/org/home" element={<OrgHome />} />
-          <Route path="/org/new" element={<OrgCreate />} />
-          <Route path="/org/badge" element={<OrgBadgeList />} />
-          <Route path="/org/badge/new" element={<OrgBadgeCreate />} />
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="org">
+            <Route index element={<OrgList />} />
+            <Route path="home" element={<OrgHome />} />
+            <Route path="new" element={<OrgCreate />} />
+            <Route path="badge">
+              <Route index element={<OrgBadgeList />} />
+              <Route path="new" element={<OrgBadgeCreate />} />
+            </Route>
+          </Route>
         </Routes>
       </LoginContext.Provider>
     </div>
