@@ -16,18 +16,20 @@
 |Template Engines||[-](#)|
 |Partials||[-](#)|
 |Middlewares|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|Indexes||[-](#)|
+|Aggregations||[-](#)|
 |**Databases**|👇|🔗|
 |MongoDB - Installations and Basics|✔️|[-](#)|
 |Mongoose|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |CRUD Operations||[-](#)|
 |Simple API - CRUD Operations using NodeJs||[-](#)|
 |Schemas and Models|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
-|**Front-end**|👇|🔗|
+|**Front-end and Full Stack**|👇|🔗|
+|Low-fid design for your application||[-](#)|
 |High-fid design for your application||[-](#)|
 |ReactJS app initialization|✔️|[#3](https://github.com/kalviumcommunity/openbadgx/pull/3)|
 |Application components created|✔️|[#7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
 |Application deployed|✔️|[#7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
-|**Full-Stack**|👇|🔗|
 |IDE Setup|✔️|[-](#)|
 |NodeJs REPL||[-](#)|
 |Using the public folder to serve files||[-](#)|
