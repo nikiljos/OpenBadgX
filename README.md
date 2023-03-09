@@ -12,7 +12,7 @@
 |Nodemon|✔️|[#1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
 |Events in Nodejs||[-](#)|
 |Express JS - first route|✔️|[#1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
-|ExpressJS - additional routes||[-](#)|
+|ExpressJS - additional routes|✔️|[#7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
 |Template Engines||[-](#)|
 |Partials||[-](#)|
 |Middlewares|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
@@ -25,15 +25,15 @@
 |**Front-end**|👇|🔗|
 |High-fid design for your application||[-](#)|
 |ReactJS app initialization|✔️|[#3](https://github.com/kalviumcommunity/openbadgx/pull/3)|
-|Application components created||[-](#)|
-|Application deployed||[-](#)|
+|Application components created|✔️|[#7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
+|Application deployed|✔️|[#7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
 |**Full-Stack**|👇|🔗|
-|IDE Setup||[-](#)|
+|IDE Setup|✔️|[-](#)|
 |NodeJs REPL||[-](#)|
 |Using the public folder to serve files||[-](#)|
 |Postman Use for Testing|✔️|[-](#)|
 |Authentication|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
-|Deployment||[-](#)|
+|Deployment|✔️|[#7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
 |**Extra Topics**|👇|🔗|
 |Type Interface|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |Type Declaration Merging|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
@@ -41,4 +41,8 @@
 |Google OAuth|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |JWT|✔️|[#2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |React Router|✔️|[#3](https://github.com/kalviumcommunity/openbadgx/pull/3)|
+|`express-async-errors` for handling async express errors|✔️|[#4](https://github.com/kalviumcommunity/openbadgx/pull/4)|
+|CORS|✔️|[#5](https://github.com/kalviumcommunity/openbadgx/pull/5)|
+|Custom Express error middleware|✔️|[#6](https://github.com/kalviumcommunity/openbadgx/pull/6)|
+|`useState`, `useEffect`, `useContext` Hooks|✔️|[#7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
 |...||[-](#)|
