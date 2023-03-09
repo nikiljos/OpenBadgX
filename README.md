@@ -16,14 +16,14 @@
 |Template Engines||[-](#)|
 |Partials||[-](#)|
 |Middlewares|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
-|Indexes||[-](#)|
-|Aggregations||[-](#)|
 |**Databases**|👇|🔗|
 |MongoDB - Installations and Basics|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1cYWrXWQUlxO85u704mKppvoHq-VVdLbV)|
 |Mongoose|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |CRUD Operations||[-](#)|
 |Simple API - CRUD Operations using NodeJs||[-](#)|
 |Schemas and Models|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|Indexes||[-](#)|
+|Aggregations||[-](#)|
 |**Front-end and Full Stack**|👇|🔗|
 |Low-fid design for your application||[-](#)|
 |High-fid design for your application||[-](#)|
