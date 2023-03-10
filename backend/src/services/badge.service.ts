@@ -22,7 +22,14 @@ const listBadge=(org:string)=>Badge.find({
 })
 .select("title desc")
 
+const badgeDetail = (org: string,badge:string) =>
+    Badge.findOne({
+        org,
+        _id:badge
+    }).select("title desc");
+
 export default {
     createBadge,
-    listBadge
+    listBadge,
+    badgeDetail
 }

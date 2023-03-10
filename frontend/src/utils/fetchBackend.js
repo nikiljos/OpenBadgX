@@ -21,7 +21,7 @@ const fetchBackend = (route, method, auth, reqBody) =>
       })
       .then((data) => {
         if (data.success) resolve(data);
-        reject(data);
+        reject(new Error(data.message));
       })
       .catch((err) => reject(err));
   });

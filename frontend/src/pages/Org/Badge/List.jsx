@@ -26,9 +26,10 @@ const OrgBadgeList = () => {
       <h2>Badges in this org</h2>
       <div className="badge-list">
         {badgeList.map((badge) => (
-          <div className="badge-card">
+          <div className="badge-card" key={badge._id}>
             <div className="title">{badge.title}</div>
-            <div className="desc">{badge.desc}</div>
+            <div className="desc">{badge.desc&&badge.desc.length>100?badge.desc.slice(0,50)+"...":badge.desc}</div>
+            <Link to={`${badge._id}/detail`}>Details</Link>
           </div>
         ))}
       </div>

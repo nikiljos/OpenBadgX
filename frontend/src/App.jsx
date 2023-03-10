@@ -9,6 +9,7 @@ import OrgHome from './pages/Org/Home';
 import OrgCreate from './pages/Org/Create';
 import OrgBadgeList from './pages/Org/Badge/List';
 import OrgBadgeCreate from './pages/Org/Badge/Create';
+import OrgBadgeDetail from './pages/Org/Badge/Detail';
 
 export const LoginContext=createContext()
 
@@ -37,6 +38,9 @@ function App() {
             <Route path="badge">
               <Route index element={<OrgBadgeList />} />
               <Route path="new" element={<OrgBadgeCreate />} />
+              <Route path=":id">
+                <Route path="detail" element={<OrgBadgeDetail />} />
+              </Route>
             </Route>
           </Route>
         </Routes>
