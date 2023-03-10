@@ -1,5 +1,13 @@
 # OpenBadgX
 
+### Project URLs
+👉 [Frontend](https://openbadgx.netlify.app)  
+
+👉 [Backend API](https://openbadgx-staging.up.railway.app/ping)  
+
+👉 [API Doc](https://documenter.getpostman.com/view/16155851/2s93Jrw514)
+
+
 ### Progress Tracking
 |Content|Status|Resource Link|
 |-----|-----|------|
