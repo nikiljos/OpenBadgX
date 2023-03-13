@@ -23,7 +23,6 @@ function App() {
     orgLogin:false,
     orgDetail:null
   });
-
   return (
     <div className="App">
       <LoginContext.Provider value={{ loginStatus, updateLoginStatus }}>

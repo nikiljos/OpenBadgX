@@ -1,3 +1,5 @@
+// DEPRECATED :- Keeping assertions as subdoc since it's 1-1 relation
+
 import { model, Schema, Types } from "mongoose";
 
 const assertionSchema= new Schema({

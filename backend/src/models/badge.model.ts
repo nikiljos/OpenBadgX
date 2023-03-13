@@ -5,13 +5,26 @@ const badgeSchema = new Schema({
         type: String,
         required: true,
     },
-    desc:{
-        type:String
+    desc: {
+        type: String,
     },
     org: {
         type: Types.ObjectId,
         ref: "orgs",
     },
+    assertions:[
+        {
+            name:{
+                type:String,
+                required:true
+            },
+            user: {
+                type: Types.ObjectId,
+                ref: "users",
+                required:true
+            },
+        },
+    ],
 });
 
 export default model("badges",badgeSchema)

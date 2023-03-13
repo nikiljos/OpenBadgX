@@ -14,6 +14,17 @@ const detail = async (req: Request, res: Response) => {
     });
 };
 
+const listBadge=async (req:Request,res:Response)=>{
+    let {userId}=res.locals
+    let badgeList=await userService.badgeList(userId)
+    res.status(200).send({
+        success:true,
+        message:"Badges Fetched",
+        data:badgeList
+    })
+}
+
 export default {
-    detail
+    detail,
+    listBadge
 };
