@@ -17,18 +17,18 @@ const assertionList = (user: string) =>
         // },
     ]);
 
-const assertionDetail=(id:string,isPrivate:boolean,user?:string)=>
-    Badge.aggregate([
-        {
-            $unwind: "$assertions",
-        },
-        {
-            $match: {
-                "assertions._id": new Types.ObjectId(id),
-            },
-        },
-    ])
-    .then(data=>data[0])
+const assertionDetail=(assertionId:string)=>
+    Badge.findOne({
+        assertions:{
+            $elemMatch: {
+                id:assertionId
+            }
+        }
+    },{
+        title:1,
+        desc:1,
+        "assertions.$":1
+    })
 
 
 export default{

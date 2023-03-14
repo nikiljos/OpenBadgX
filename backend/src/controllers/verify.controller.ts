@@ -1,9 +1,9 @@
 import { Request,Response } from "express"
 import assertionService from "../services/assertion.service"
 
-const checkAssertion=async (req:Request,res:Response)=>{
+const assertionDetail=async (req:Request,res:Response)=>{
     const {id}=req.params
-    let detail=await assertionService.assertionDetail(id,false)
+    let detail=await assertionService.assertionDetail(id as string)
     if(detail){
         res.status(200).send({
             success:true,
@@ -15,5 +15,5 @@ const checkAssertion=async (req:Request,res:Response)=>{
 }
 
 export default {
-    checkAssertion
+    assertionDetail
 }

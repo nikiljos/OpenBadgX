@@ -4,6 +4,6 @@ import genericController from "../controllers/generic.controller";
 import verifyController from "../controllers/verify.controller"
 
 router.get("/ping",genericController.ping)
-router.get("/verify/:id",verifyController.checkAssertion)
+router.get("/detail/:id",verifyController.assertionDetail)
 
 export default router
