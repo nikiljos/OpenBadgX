@@ -1,7 +1,7 @@
 import express from "express";
-import awardController from "../controllers/award.controller";
+import awardController from "../../controllers/award.controller";
 const router = express.Router();
-import badgeController from "../controllers/badge.controller";
+import badgeController from "../../controllers/badge.controller";
 
 router.get("/",badgeController.listBadge)
 router.post("/add",badgeController.createBadge)

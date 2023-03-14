@@ -45,6 +45,7 @@ const loginOrg=async (req:Request,res:Response)=>{
 const detail=async (req:Request,res:Response)=>{
     let {orgId}=res.locals
     let detail=await orgService.orgDetail(orgId)
+    if(!detail) throw new Error("Failed to fetch Org detail")
     res.status(200).send({
         success:true,
         message:"Details fetch successful",

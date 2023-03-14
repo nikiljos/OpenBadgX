@@ -18,7 +18,7 @@ const OrgCreate = () => {
       status:"load",
       message:"Loading..."
     })
-    let orgStatus=await fetchBackend("org/add","POST",loginStatus.token,{
+    let orgStatus=await fetchBackend("user/org/add","POST",loginStatus.token,{
       key:orgKey,
       name:orgName
     })

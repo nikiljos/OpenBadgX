@@ -1,25 +1,15 @@
-import {useContext,useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import { LoginContext } from '../../../App'
-import fetchBackend from '../../../utils/fetchBackend';
+import Loading from "../../../components/Loading";
+import Error from "../../../components/Error";
+import useBackendData from "../../../hooks/useBackendData";
 import "./List.css"
 
 const OrgBadgeList = () => {
-  const [badgeList,updateBadgeList]=useState([])
-  const { loginStatus, updateLoginStatus } = useContext(LoginContext);
 
-  useEffect(()=>{
+  const [apiLoad, apiError, badgeList] = useBackendData(`org/badge`, []);
 
-    if(loginStatus.orgLogin){
-      (async ()=>{
-        let badgeListRes=await fetchBackend("org/badge","GET",loginStatus.token)
-        .then(res=>res.data)
-        .catch(err=>console.log("Error:",err))
-        updateBadgeList(badgeListRes)
-      })()
-    }
-
-  },[loginStatus.orgLogin])
+  if(apiError) return <Error message={apiError}/>
+  if(apiLoad) return <Loading/>
 
   return (
     <div>

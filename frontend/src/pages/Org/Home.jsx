@@ -1,28 +1,18 @@
-import { useEffect,useState,useContext } from 'react'
-import { LoginContext } from '../../App'
-import fetchBackend from '../../utils/fetchBackend';
-import LoginPrompt from '../../components/LoginPrompt';
 import { Link } from 'react-router-dom';
+import Loading from "../../components/Loading";
+import Error from "../../components/Error";
+import useBackendData from "../../hooks/useBackendData";
 
 const OrgHome = () => {
-  const { loginStatus, updateLoginStatus } = useContext(LoginContext);
-  const [orgDetail,updateOrgDetail]=useState({
+
+  const [apiLoad,apiError,orgDetail]=useBackendData(`org/detail`,{
     name:null,
     key:null
   })
 
-  useEffect(()=>{
-    if(loginStatus.orgLogin){
-      (async ()=>{
-        const orgDetailRes=await fetchBackend("org/detail","GET",loginStatus.token,null)
-        .then(data=>data.data)
-        .catch(err=>console.log("Error: ",err))
-        orgDetailRes&&updateOrgDetail(orgDetailRes)
-      })()
-    }
-  },[loginStatus])
+  if(apiError) return <Error message={apiError}/>
+  if(apiLoad) return <Loading/>
 
-  if(!loginStatus.orgLogin) return <LoginPrompt type="org"/>
   return (
     <div>
       <h3>Org Home</h3>

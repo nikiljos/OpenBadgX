@@ -1,34 +1,24 @@
-import { useEffect, useState, useContext } from "react";
 import fetchBackend from "../../utils/fetchBackend";
-import { LoginContext } from "../../App";
-import LoginPrompt from "../../components/LoginPrompt";
 import "./List.css"
 import { setLocalToken } from "../../utils/localToken";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
+import Error from "../../components/Error";
+import useBackendData from "../../hooks/useBackendData";
+import { useContext } from "react";
+import { LoginContext } from "../../App";
 
 const OrgList = () => {
-  const [orgList, updateOrgList] = useState([]);
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
-  const navigate=useNavigate()
+  const [apiLoad,apiError,orgList]=useBackendData(`user/org`,[])
 
-  useEffect(() => {
-    if (loginStatus.loggedIn) {
-      (async () => {
-        let orgListRes = await fetchBackend(
-          "org",
-          "GET",
-          loginStatus.token,
-          null
-        )
-          .then((data) => data.data)
-          .catch((err) => console.log(err));
-        updateOrgList(orgListRes);
-      })();
-    }
-  }, [loginStatus.loggedIn]);
+  const navigate = useNavigate();
+
+  if(apiError) return <Error message={apiError}/>
+  if(apiLoad) return <Loading/>
 
   const orgLogin=async(orgId)=>{
-    let orgToken = await fetchBackend("org/login", "POST", loginStatus.token, {
+    let orgToken = await fetchBackend("user/org/login", "POST", loginStatus.token, {
       orgId,
     })
       .then((data) => data.data.accessToken)
@@ -45,9 +35,6 @@ const OrgList = () => {
     }
   }
 
-  if (!loginStatus.loggedIn) {
-    return <LoginPrompt/>;
-  }
   return (
     <div>
       <h3>Your Orgs</h3>
