@@ -15,6 +15,9 @@ const Home = () => {
         <div>
           <Link to="/org/home">Org Home</Link>
         </div>
+        <div>
+          <Link to="/me/badge">Recieved Badges</Link>
+        </div>
       </div>
     </div>
   );

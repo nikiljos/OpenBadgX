@@ -10,6 +10,9 @@ import OrgCreate from './pages/Org/Create';
 import OrgBadgeList from './pages/Org/Badge/List';
 import OrgBadgeCreate from './pages/Org/Badge/Create';
 import OrgBadgeDetail from './pages/Org/Badge/Detail';
+import UserBadgeList from './pages/User/Badge/List';
+import UserBadgeDetail from './pages/User/Badge/Detail';
+import PublicBadgeDetail from './pages/Public/Badge/Detail';
 
 export const LoginContext=createContext()
 
@@ -41,6 +44,15 @@ function App() {
                 <Route path="detail" element={<OrgBadgeDetail />} />
               </Route>
             </Route>
+          </Route>
+          <Route path="me">
+            <Route path="badge">
+              <Route index element={<UserBadgeList />} />
+              <Route path=":id" element={<UserBadgeDetail />} />
+            </Route>
+          </Route>
+          <Route path="badge">
+            <Route path=":id" element={<PublicBadgeDetail />} />
           </Route>
         </Routes>
       </LoginContext.Provider>
