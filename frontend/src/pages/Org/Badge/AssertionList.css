@@ -1,0 +1,6 @@
+.awardee{
+  text-align: left;
+  width: 70vw;
+  display: flex;
+  justify-content: space-around;
+}

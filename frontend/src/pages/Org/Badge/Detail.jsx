@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import useBackendData from '../../../hooks/useBackendData';
@@ -20,8 +20,10 @@ const OrgBadgeDetail = () => {
         <h3>{apiData.title}</h3>
         <div>{apiData.desc}</div>
       </div>
+      <div><Link to="../award">Award badge</Link></div>
+      <div><Link to="../assertions">View Assertions</Link></div>
     </div>
-  )
+  );
 }
 
 export default OrgBadgeDetail

@@ -45,6 +45,19 @@ const batchAward = (badgeId: string,orgId:string, users: [UserDetail]) =>
         });
     });
 
+const listAwardees = (badgeId: string, orgId: string) =>
+    Badge.findOne({
+        _id: badgeId,
+        org: orgId,
+    })
+        .populate("assertions.user", "name email")
+        .select({
+            assertions: {
+                user: 1,
+            },
+        });
+
 export default {
-    batchAward
+    batchAward,
+    listAwardees
 }

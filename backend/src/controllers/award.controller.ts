@@ -24,6 +24,18 @@ const awardBadge=async (req:Request,res:Response)=>{
     })
 }
 
+const listAssertions=async(req:Request,res:Response)=>{
+    let { badge_id: badgeId } = req.params;
+    let {orgId}=res.locals
+    let awardeeList=await awardService.listAwardees(badgeId,orgId)
+    res.status(200).send({
+        success:true,
+        message:"Fetched successfully",
+        data:awardeeList?.assertions
+    })
+}
+
 export default {
-    awardBadge
+    awardBadge,
+    listAssertions
 }

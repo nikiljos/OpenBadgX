@@ -3,7 +3,11 @@ import {model,Schema} from "mongoose";
 const userSchema=new Schema({
     email:{
         type:String,
-        required:true
+        required:true,
+        match: [
+            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 
+            'Please fill a valid email address'
+        ]
     },
     name:{
         type:String

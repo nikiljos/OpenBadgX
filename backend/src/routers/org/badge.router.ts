@@ -7,6 +7,7 @@ router.get("/",badgeController.listBadge)
 router.post("/add",badgeController.createBadge)
 
 router.get("/:badge_id/detail",badgeController.badgeDetail)
+router.get("/:badge_id/assertions", awardController.listAssertions);
 router.post("/:badge_id/award", awardController.awardBadge);
 
 export default router
