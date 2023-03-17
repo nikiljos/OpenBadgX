@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useContext, useEffect, useState } from "react";
-import "./Login.css";
 import { LoginContext } from "../App";
 import fetchBackend from "../utils/fetchBackend";
 import { setLocalToken } from "../utils/localToken";

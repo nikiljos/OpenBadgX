@@ -23,6 +23,10 @@ const NavBar = () => {
   const [userMenuAnchor, setUserMenuAnchor] = useState(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
+  const [orgMenuAnchor, setOrgMenuAnchor] = useState(null);
+  const [orgMenuOpen, setOrgMenuOpen] = useState(false);
+
+
   //check localStorage for Token
   useEffect(() => {
     if (!loginStatus.localStorageCheck) {
@@ -78,10 +82,15 @@ const NavBar = () => {
     setUserMenuAnchor(e.target);
     setUserMenuOpen((prev) => !prev);
   };
+  const toggleOrgMenu = (e) => {
+    setOrgMenuAnchor(e.target);
+    setOrgMenuOpen((prev) => !prev);
+  };
 
   const goFromMenu = (route) => {
     navigate(route);
     setUserMenuOpen(false);
+    setOrgMenuOpen(false)
   };
 
   return (
@@ -112,9 +121,9 @@ const NavBar = () => {
                 <Button
                   endIcon={<KeyboardArrowDown />}
                   variant="primary"
-                  onClick={() => navigate("/org")}
+                  onClick={toggleOrgMenu}
                   sx={{
-                    textTransform:"none"
+                    textTransform: "none",
                   }}
                 >
                   {loginStatus.orgDetail
@@ -151,7 +160,7 @@ const NavBar = () => {
                   [
                     <MenuItem
                       key="detail"
-                      onClick={() => navigate("/me/badge")}
+                      onClick={() => goFromMenu("/me/badge")}
                     >
                       {loginStatus.userDetail.name}
                     </MenuItem>,
@@ -162,6 +171,27 @@ const NavBar = () => {
                 ) : (
                   <MenuItem onClick={() => goFromMenu("/login")}>
                     Login
+                  </MenuItem>
+                )}
+              </Menu>
+
+              <Menu
+                open={orgMenuOpen}
+                anchorEl={orgMenuAnchor}
+                onClose={toggleOrgMenu}
+              >
+                {loginStatus.orgLogin ? (
+                  [
+                    <MenuItem key="detail" onClick={() => goFromMenu("/org/home")}>
+                      Organization Home
+                    </MenuItem>,
+                    <MenuItem key="login" onClick={() => goFromMenu("/org")}>
+                      Change Organization
+                    </MenuItem>,
+                  ]
+                ) : (
+                  <MenuItem onClick={() => goFromMenu("/org")}>
+                    Select Organization
                   </MenuItem>
                 )}
               </Menu>

@@ -15,6 +15,7 @@ import UserBadgeDetail from './pages/User/Badge/Detail';
 import PublicBadgeDetail from './pages/Public/Badge/Detail';
 import OrgBadgeAward from './pages/Org/Badge/Award';
 import OrgBadgeAssertionList from './pages/Org/Badge/AssertionList';
+import { Box, CssBaseline } from "@mui/material";
 
 export const LoginContext=createContext()
 
@@ -31,34 +32,42 @@ function App() {
   return (
     <div className="App">
       <LoginContext.Provider value={{ loginStatus, updateLoginStatus }}>
+        <CssBaseline />
         <NavBar />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="org">
-            <Route index element={<OrgList />} />
-            <Route path="home" element={<OrgHome />} />
-            <Route path="new" element={<OrgCreate />} />
-            <Route path="badge">
-              <Route index element={<OrgBadgeList />} />
-              <Route path="new" element={<OrgBadgeCreate />} />
-              <Route path=":id">
-                <Route path="detail" element={<OrgBadgeDetail />} />
-                <Route path="award" element={<OrgBadgeAward />} />
-                <Route path="assertions" element={<OrgBadgeAssertionList />} />
+        <Box sx={{
+          p:3
+        }}>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="login" element={<Login />} />
+            <Route path="org">
+              <Route index element={<OrgList />} />
+              <Route path="home" element={<OrgHome />} />
+              <Route path="new" element={<OrgCreate />} />
+              <Route path="badge">
+                <Route index element={<OrgBadgeList />} />
+                <Route path="new" element={<OrgBadgeCreate />} />
+                <Route path=":id">
+                  <Route path="detail" element={<OrgBadgeDetail />} />
+                  <Route path="award" element={<OrgBadgeAward />} />
+                  <Route
+                    path="assertions"
+                    element={<OrgBadgeAssertionList />}
+                  />
+                </Route>
               </Route>
             </Route>
-          </Route>
-          <Route path="me">
-            <Route path="badge">
-              <Route index element={<UserBadgeList />} />
-              <Route path=":id" element={<UserBadgeDetail />} />
+            <Route path="me">
+              <Route path="badge">
+                <Route index element={<UserBadgeList />} />
+                <Route path=":id" element={<UserBadgeDetail />} />
+              </Route>
             </Route>
-          </Route>
-          <Route path="badge">
-            <Route path=":id" element={<PublicBadgeDetail />} />
-          </Route>
-        </Routes>
+            <Route path="badge">
+              <Route path=":id" element={<PublicBadgeDetail />} />
+            </Route>
+          </Routes>
+        </Box>
       </LoginContext.Provider>
     </div>
   );

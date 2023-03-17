@@ -1,5 +1,4 @@
 import fetchBackend from "../../utils/fetchBackend";
-import "./List.css"
 import { setLocalToken } from "../../utils/localToken";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";

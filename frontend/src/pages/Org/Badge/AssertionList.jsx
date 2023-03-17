@@ -2,7 +2,6 @@ import Loading from "../../../components/Loading";
 import Error from "../../../components/Error";
 import useBackendData from "../../../hooks/useBackendData";
 import { Link, useParams } from "react-router-dom";
-import "./AssertionList.css"
 
 const OrgBadgeAssertionList= () => {
   const {id}=useParams()

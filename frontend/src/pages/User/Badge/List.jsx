@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import Error from "../../../components/Error";
 import useBackendData from "../../../hooks/useBackendData";
-import "../../Org/List.css";
 
 const UserBadgeList = () => {
   const [apiLoad, apiError, badgeList] = useBackendData(`user/badge`, []);
