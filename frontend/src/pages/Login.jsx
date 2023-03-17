@@ -4,7 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../App";
 import fetchBackend from "../utils/fetchBackend";
 import { setLocalToken } from "../utils/localToken";
-import { Alert, Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import BannerAlert from "../components/BannerAlert";
 
 const Login = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -91,9 +92,7 @@ const Login = () => {
           </>
         )}
       </GoogleOAuthProvider>
-      {alertData?(
-        <Alert severity={alertData.type} sx={{mt:5}}>{alertData.message}</Alert>
-      ):""}
+      <BannerAlert status={alertData}/>
     </Box>
   );
 };

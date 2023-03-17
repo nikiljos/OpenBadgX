@@ -4,7 +4,7 @@ import Loading from '../../../components/Loading'
 import useBackendData from '../../../hooks/useBackendData'
 import fetchBackend from '../../../utils/fetchBackend'
 import { LoginContext } from '../../../App'
-import { Alert } from '@mui/material'
+import BannerAlert from '../../../components/BannerAlert'
 
 const OrgBadgeAward = () => {
   const {id}=useParams()
@@ -103,34 +103,32 @@ const OrgBadgeAward = () => {
         </form>
       </div>
 
-      {alertData ? (
-        <Alert severity={alertData.type} sx={{ mt: 5 }}>
-          {alertData.message}
-        </Alert>
+      <BannerAlert status={alertData} />
+
+      {alertData && alertData.type === "success" ? (
+        <div className="result">
+          <div className="success">
+            <h5>Success</h5>
+            {awardResult.success.map((elt) => (
+              <div>{elt}</div>
+            ))}
+          </div>
+          <div className="exist">
+            <h5>Exist</h5>
+            {awardResult.exist.map((elt) => (
+              <div>{elt}</div>
+            ))}
+          </div>
+          <div className="fail">
+            <h5>Error</h5>
+            {awardResult.error.map((elt) => (
+              <div>{elt}</div>
+            ))}
+          </div>
+        </div>
       ) : (
         ""
       )}
-
-      {alertData&&alertData.type==="success"?(<div className="result">
-        <div className="success">
-          <h5>Success</h5>
-          {awardResult.success.map((elt) => (
-            <div>{elt}</div>
-          ))}
-        </div>
-        <div className="exist">
-          <h5>Exist</h5>
-          {awardResult.exist.map((elt) => (
-            <div>{elt}</div>
-          ))}
-        </div>
-        <div className="fail">
-          <h5>Error</h5>
-          {awardResult.error.map((elt) => (
-            <div>{elt}</div>
-          ))}
-        </div>
-      </div>):""}
     </div>
   );
 }

@@ -1,8 +1,9 @@
-import { Alert, Button, FormControl, TextField } from "@mui/material";
+import { Button, FormControl, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../App";
+import BannerAlert from "../../../components/BannerAlert";
 import fetchBackend from "../../../utils/fetchBackend";
 
 const OrgBadgeCreate = () => {
@@ -71,13 +72,7 @@ const OrgBadgeCreate = () => {
           Create
         </Button>
 
-        {alertData ? (
-          <Alert severity={alertData.type} sx={{ mt: 5 }}>
-            {alertData.message}
-          </Alert>
-        ) : (
-          ""
-        )}
+        <BannerAlert status={alertData} />
       </Box>
 
       <Button sx={{ mt: 2 }} variant="outlined" onClick={() => navigate("../")}>

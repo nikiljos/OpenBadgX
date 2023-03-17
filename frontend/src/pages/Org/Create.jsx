@@ -2,7 +2,7 @@ import { useState,useContext } from 'react'
 import fetchBackend from '../../utils/fetchBackend';
 import { LoginContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
-import { Alert } from '@mui/material';
+import BannerAlert from '../../components/BannerAlert';
 
 const OrgCreate = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -60,13 +60,7 @@ const OrgCreate = () => {
         <button type="submit">Create Org</button>
       </form>
 
-      {alertData ? (
-        <Alert severity={alertData.type} sx={{ mt: 5 }}>
-          {alertData.message}
-        </Alert>
-      ) : (
-        ""
-      )}
+      <BannerAlert status={alertData} />
     </div>
   );
 }

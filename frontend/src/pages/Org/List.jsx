@@ -7,7 +7,8 @@ import useBackendData from "../../hooks/useBackendData";
 import { useContext,useState } from "react";
 import { LoginContext } from "../../App";
 import { Apartment } from "@mui/icons-material";
-import { Alert, Box, Button, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { Box, Button, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import BannerAlert from "../../components/BannerAlert";
 
 const OrgList = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -54,22 +55,20 @@ const OrgList = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems:"center",
-          flexWrap:"wrap"
+          alignItems: "center",
+          flexWrap: "wrap",
         }}
       >
         <Typography variant="h5">Your Organizations</Typography>
-        <Button variant="contained" onClick={() => navigate("./new")} sx={{m:3}}>
+        <Button
+          variant="contained"
+          onClick={() => navigate("./new")}
+          sx={{ m: 3 }}
+        >
           Create Org
         </Button>
       </Box>
-      {alertData ? (
-        <Alert severity={alertData.type} sx={{ mt: 5 }}>
-          {alertData.message}
-        </Alert>
-      ) : (
-        ""
-      )}
+      <BannerAlert status={alertData} />
       <List>
         {orgList.map((org) => (
           <ListItem disablePadding onClick={() => orgLogin(org._id)}>
