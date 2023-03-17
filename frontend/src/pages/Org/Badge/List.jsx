@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import Error from "../../../components/Error";
 import useBackendData from "../../../hooks/useBackendData";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import BadgeCard from "../../../components/BadgeCard";
 
@@ -15,7 +15,23 @@ const OrgBadgeList = () => {
 
   return (
     <div>
-      <h2>Badges in this org</h2>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        <Typography variant="h5">Your Badges</Typography>
+        <Button
+          variant="contained"
+          onClick={() => navigate("./new")}
+          sx={{ m: 3 }}
+        >
+          Create Badge
+        </Button>
+      </Box>
       <Box
         sx={{
           display: "flex",
@@ -46,9 +62,6 @@ const OrgBadgeList = () => {
           />
         ))}
       </Box>
-      <Button variant="contained" onClick={() => navigate(`./new`)}>
-        Create Badge
-      </Button>
     </div>
   );
 };

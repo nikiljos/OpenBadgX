@@ -160,7 +160,7 @@ const NavBar = () => {
                   [
                     <MenuItem
                       key="detail"
-                      onClick={() => goFromMenu("/me/badge")}
+                      onClick={() => goFromMenu("/me")}
                     >
                       {loginStatus.userDetail.name}
                     </MenuItem>,

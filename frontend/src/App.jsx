@@ -16,6 +16,7 @@ import PublicBadgeDetail from './pages/Public/Badge/Detail';
 import OrgBadgeAward from './pages/Org/Badge/Award';
 import OrgBadgeAssertionList from './pages/Org/Badge/AssertionList';
 import { Box, CssBaseline } from "@mui/material";
+import UserHome from "./pages/User/Home";
 
 export const LoginContext=createContext()
 
@@ -58,6 +59,7 @@ function App() {
               </Route>
             </Route>
             <Route path="me">
+              <Route index element={<UserHome/>}/>
               <Route path="badge">
                 <Route index element={<UserBadgeList />} />
                 <Route path=":id" element={<UserBadgeDetail />} />

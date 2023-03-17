@@ -26,7 +26,6 @@ const Login = () => {
         })
           .then((data) => data.data.accessToken)
           .catch((err) => console.log("Error: ", err));
-        // console.log(token);
         if (!token) return;
         updateLoginStatus((prev) => ({
           ...prev,
@@ -41,7 +40,7 @@ const Login = () => {
           type: "success",
           message: "Successfully Logged in! Redirecting...",
         });
-        setTimeout(() => navigate("/me/badge"), 1000);
+        setTimeout(() => navigate("/me"), 1000);
       })();
     }
   }, [gAuth]);
@@ -61,7 +60,6 @@ const Login = () => {
     });
   };
 
-  // console.log(loginStatus.token);
   return (
     <Box sx={{
       display:"flex",
