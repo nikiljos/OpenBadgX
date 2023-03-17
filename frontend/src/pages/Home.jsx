@@ -5,7 +5,8 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to OpenBadgX</h1>
-      <div className="links">
+      <h3>The future of awarding!</h3>
+      {/* <div className="links">
         <div>
           <Link to="/login">Login/Logout</Link>
         </div>
@@ -18,7 +19,7 @@ const Home = () => {
         <div>
           <Link to="/me/badge">Recieved Badges</Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

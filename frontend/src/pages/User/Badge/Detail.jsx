@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import useBackendData from '../../../hooks/useBackendData';
@@ -26,9 +26,12 @@ const UserBadgeDetail = () => {
           <div className="name">{badgeData.assertions[0].name}</div>
           <div className="id">{badgeData.assertions[0]._id}</div>
         </div>
+        <Link to={`/badge/${badgeData.assertions[0]._id}`} target="_blank">
+          Public Verification Page⧉
+        </Link>
       </div>
     </div>
-  )
+  );
 }
 
 export default UserBadgeDetail

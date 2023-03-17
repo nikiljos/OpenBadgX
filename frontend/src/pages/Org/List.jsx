@@ -28,7 +28,8 @@ const OrgList = () => {
       updateLoginStatus(prev=>({
         ...prev,
         orgLogin:true,
-        token:orgToken
+        token:orgToken,
+        orgDetail:null
       }))
       setLocalToken(orgToken)
       navigate("/org/home")

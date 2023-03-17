@@ -32,11 +32,12 @@ const OrgCreate = () => {
         status:"success",
         message:"Org created successfully🤩 Redirecting..."
       })
-      updateLoginStatus(prev=>({
+      updateLoginStatus((prev) => ({
         ...prev,
-        orgLogin:true,
-        token:orgStatus.accessToken
-      }))
+        orgLogin: true,
+        token: orgStatus.accessToken,
+        orgDetail: null,
+      }));
       setTimeout(()=>navigate("/org/home"),1000);
     }
     
