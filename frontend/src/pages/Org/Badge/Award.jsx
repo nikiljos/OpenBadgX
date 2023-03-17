@@ -1,82 +1,88 @@
-import React, { useState,useContext } from 'react'
-import { useParams } from 'react-router-dom'
-import Loading from '../../../components/Loading'
-import useBackendData from '../../../hooks/useBackendData'
-import fetchBackend from '../../../utils/fetchBackend'
-import { LoginContext } from '../../../App'
-import BannerAlert from '../../../components/BannerAlert'
+import React, { useState, useContext } from "react";
+import { useParams } from "react-router-dom";
+import Loading from "../../../components/Loading";
+import useBackendData from "../../../hooks/useBackendData";
+import fetchBackend from "../../../utils/fetchBackend";
+import { LoginContext } from "../../../App";
+import BannerAlert from "../../../components/BannerAlert";
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 
 const OrgBadgeAward = () => {
-  const {id}=useParams()
-  const [detailLoad,detailError,badgeDetail]=useBackendData(`org/badge/${id}/detail`,{})
-  const [inputArray,updateInputArray]=useState([{
-    name:"",
-    email:""
-  }])
-  const [awardResult,updateAwardResult]=useState({
-    success:[],
-    exist:[],
-    error:[]
-  })
+  const { id } = useParams();
+  const [detailLoad, detailError, badgeDetail] = useBackendData(
+    `org/badge/${id}/detail`,
+    {}
+  );
+  const [inputArray, updateInputArray] = useState([
+    {
+      name: "",
+      email: "",
+    },
+  ]);
+  const [awardResult, updateAwardResult] = useState({
+    success: [],
+    exist: [],
+    error: [],
+  });
   const [alertData, updateAlertData] = useState(null);
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
-  const addInputField=(e)=>{
-    e.preventDefault()
-    updateInputArray((prev) =>{
-      let newArray=[...prev]
+  const addInputField = (e) => {
+    e.preventDefault();
+    updateInputArray((prev) => {
+      let newArray = [...prev];
       newArray.push({
         name: "",
         email: "",
       });
-      return newArray
-    } );
-  }
+      return newArray;
+    });
+  };
 
-  const updateFieldValue=(index,key,value)=>{
-    updateInputArray(prev=>{
-      let newArray=[...prev]
-      newArray[index][key]=value
-      return newArray
-    })
-  }
+  const updateFieldValue = (index, key, value) => {
+    updateInputArray((prev) => {
+      let newArray = [...prev];
+      newArray[index][key] = value;
+      return newArray;
+    });
+  };
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     updateAlertData({
       type: "info",
       message: "Loading...",
     });
-    fetchBackend(`org/badge/${id}/award`,"POST",loginStatus.token,{
-      recipients:inputArray
+    fetchBackend(`org/badge/${id}/award`, "POST", loginStatus.token, {
+      recipients: inputArray,
     })
-    .then(res=>{
-      updateAwardResult(res.data)
-      updateInputArray([
-        {
-          name: "",
-          email: "",
-        },
-      ]);
-      updateAlertData({
-        type: "success",
-        message: res.message,
+      .then((res) => {
+        updateAwardResult(res.data);
+        updateInputArray([
+          {
+            name: "",
+            email: "",
+          },
+        ]);
+        updateAlertData({
+          type: "success",
+          message: res.message,
+        });
+      })
+      .catch((err) => {
+        console.log("error", err);
+        updateAlertData({
+          type: "err",
+          message: err.message || "Error",
+        });
       });
-    })
-    .catch(err=>{
-      console.log("error",err)
-      updateAlertData({
-        type: "err",
-        message: err.message||"Error",
-      });
-    })
-  }
+  };
 
-  if(detailLoad) return <Loading/>
-  if(detailError) console.log({detailError})
+  if (detailLoad) return <Loading />;
+  if (detailError) console.log({ detailError });
 
   return (
     <div>
-      <div className="detail">
+      {/* <div className="detail">
         <h3>{badgeDetail.title}</h3>
         <div className="desc">{badgeDetail.desc}</div>
       </div>
@@ -100,11 +106,42 @@ const OrgBadgeAward = () => {
           ))}
           <button onClick={addInputField}>Add field</button>
           <button type="submit">Award</button>
-        </form>
-      </div>
+        </form> 
+      </div>*/}
 
+      <Box sx={{ mb: 3 }}>
+        <Typography variant="h5">Award {badgeDetail.title} Badge</Typography>
+      </Box>
+      <Box component="form" onSubmit={handleSubmit}>
+        {inputArray.map((elt, i) => (
+          <Box sx={{ mt: 1 }}>
+            <TextField
+              variant="outlined"
+              size="small"
+              value={elt.name}
+              onChange={(e) => updateFieldValue(i, "name", e.target.value)}
+              label="Name"
+              sx={{ mr: 3 }}
+            />
+            <TextField
+              variant="outlined"
+              size="small"
+              value={elt.email}
+              onChange={(e) => updateFieldValue(i, "email", e.target.value)}
+              label="Email"
+            />
+          </Box>
+        ))}
+        <Box sx={{ mt: 3 }}>
+          <Button onClick={addInputField} variant="outlined" sx={{ mr: 3 }}>
+            Add field
+          </Button>
+          <Button type="submit" variant="outlined" color="success">
+            Award
+          </Button>
+        </Box>
+      </Box>
       <BannerAlert status={alertData} />
-
       {alertData && alertData.type === "success" ? (
         <div className="result">
           <div className="success">
@@ -131,6 +168,6 @@ const OrgBadgeAward = () => {
       )}
     </div>
   );
-}
+};
 
-export default OrgBadgeAward
+export default OrgBadgeAward;
