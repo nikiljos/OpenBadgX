@@ -6,6 +6,8 @@ import Error from "../../components/Error";
 import useBackendData from "../../hooks/useBackendData";
 import { useContext } from "react";
 import { LoginContext } from "../../App";
+import { Apartment } from "@mui/icons-material";
+import { Box, Button, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 
 const OrgList = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -37,15 +39,27 @@ const OrgList = () => {
 
   return (
     <div>
-      <h3>Your Orgs</h3>
-      <div className="org-select">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography variant="h5">Your Organizations</Typography>
+        <Button variant="contained">Create Org</Button>
+      </Box>
+      <List>
         {orgList.map((org) => (
-          <div className="org-item" key={org.key} onClick={()=>orgLogin(org._id)}>
-            {org.key} - {org.name}
-          </div>
+          <ListItem disablePadding onClick={() => orgLogin(org._id)}>
+            <ListItemButton>
+              <ListItemIcon>
+                <Apartment />
+              </ListItemIcon>
+              <ListItemText primary={org.name} secondary={org.key} />
+            </ListItemButton>
+          </ListItem>
         ))}
-      </div>
-      <Link to="/org/new">Create Org</Link>
+      </List>
     </div>
   );
 };

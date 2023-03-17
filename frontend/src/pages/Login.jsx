@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../App";
 import fetchBackend from "../utils/fetchBackend";
 import { setLocalToken } from "../utils/localToken";
+import { Box, Button, Typography } from "@mui/material";
 
 const Login = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -23,17 +24,17 @@ const Login = () => {
         updateLoginStatus((prev) => ({
           ...prev,
           loggedIn: true,
-          localStorageCheck:true,
+          localStorageCheck: true,
           token: token,
           userDetail: null,
           orgDetail: null,
         }));
-        setLocalToken(token)
+        setLocalToken(token);
       })();
     }
   }, [gAuth]);
 
-  const logOut=()=>{
+  const logOut = () => {
     updateLoginStatus((prev) => ({
       ...prev,
       loggedIn: false,
@@ -41,31 +42,40 @@ const Login = () => {
       userDetail: null,
       orgDetail: null,
     }));
-    setLocalToken(null)
-  }
+    setLocalToken(null);
+  };
 
   // console.log(loginStatus.token);
   return (
-    <div>
+    <Box sx={{
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      "& *":{
+        mt:3
+      }
+    }}>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-        <h2>Login Happens here</h2>
-        <div className="detail">
-          <Link to="/">Go Home 🏠</Link>
-        </div>
-        <div className="login-action">
-          {loginStatus.loggedIn ? (
-            <button onClick={logOut}>Log Out</button>
-          ) : (
+        {loginStatus.loggedIn ? (
+          <>
+            <Typography variant="h6">You are logged in!</Typography>
+            <Button onClick={logOut} variant="outlined" color="error" sx={{mt:5}}>
+              Log Out
+            </Button>
+          </>
+        ) : (
+          <>
+            <Typography variant="h6">Login with Google to continue!</Typography>
             <GoogleLogin
               onSuccess={updateGAuth}
               onError={() => {
                 console.log("Login Failed");
               }}
             />
-          )}
-        </div>
+          </>
+        )}
       </GoogleOAuthProvider>
-    </div>
+    </Box>
   );
 };
 

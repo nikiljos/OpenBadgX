@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, FormControl, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -50,28 +50,26 @@ const OrgBadgeCreate = () => {
         component="form"
         onSubmit={createBadge}
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          "& *": {
-            mt: 2,
-          },
+          maxWidth: 700,
         }}
       >
-        <TextField
-          variant="outlined"
-          value={badgeTitle}
-          onChange={(e) => updateBadgeTitle(e.target.value)}
-          label="Title"
-        />
-
-        <TextField
-          variant="outlined"
-          value={badgeDesc}
-          onChange={(e) => updateBadgeDesc(e.target.value)}
-          label="Description"
-        />
-
+        <FormControl fullWidth={true} margin="normal">
+          <TextField
+            variant="outlined"
+            value={badgeTitle}
+            onChange={(e) => updateBadgeTitle(e.target.value)}
+            label="Title"
+          />
+        </FormControl>
+        <FormControl fullWidth={true} margin="normal">
+          <TextField
+            variant="outlined"
+            value={badgeDesc}
+            onChange={(e) => updateBadgeDesc(e.target.value)}
+            label="Description"
+            multiline={true}
+          />
+        </FormControl>
         <Button type="submit" sx={{ mt: 3 }} variant="contained">
           Create
         </Button>
