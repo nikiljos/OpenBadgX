@@ -54,11 +54,12 @@ const OrgList = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          alignItems:"center",
           flexWrap:"wrap"
         }}
       >
         <Typography variant="h5">Your Organizations</Typography>
-        <Button variant="contained" onClick={() => navigate("./new")}>
+        <Button variant="contained" onClick={() => navigate("./new")} sx={{m:3}}>
           Create Org
         </Button>
       </Box>

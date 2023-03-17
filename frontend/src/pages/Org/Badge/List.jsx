@@ -1,16 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import Error from "../../../components/Error";
 import useBackendData from "../../../hooks/useBackendData";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
+import { Button } from "@mui/material";
 import { Box } from "@mui/system";
+import BadgeCard from "../../../components/BadgeCard";
 
 const OrgBadgeList = () => {
   const [apiLoad, apiError, badgeList] = useBackendData(`org/badge`, []);
@@ -29,41 +23,27 @@ const OrgBadgeList = () => {
         }}
       >
         {badgeList.map((badge) => (
-          <Card key={badge._id} sx={{ width: 275, m: 2 }}>
-            <CardMedia
-              component="img"
-              image="https://tiny.nikjos.in/hello"
-              sx={{ height: 200 }}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {badge.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {badge.desc}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button
-                size="small"
-                onClick={() => navigate(`./${badge._id}/detail`)}
-              >
-                Details
-              </Button>
-              <Button
-                size="small"
-                onClick={() => navigate(`./${badge._id}/award`)}
-              >
-                Award
-              </Button>
-              <Button
-                size="small"
-                onClick={() => navigate(`./${badge._id}/assertions`)}
-              >
-                History
-              </Button>
-            </CardActions>
-          </Card>
+          <BadgeCard
+            id={badge._id}
+            image="https://tiny.nikjos.in/hello"
+            title={badge.title}
+            desc={badge.desc}
+            key={badge._id}
+            links={[
+              {
+                title: "Details",
+                route: `./${badge._id}/detail`,
+              },
+              {
+                title: "Award",
+                route: `./${badge._id}/award`,
+              },
+              {
+                title: "History",
+                route: `./${badge._id}/assertions`,
+              },
+            ]}
+          />
         ))}
       </Box>
       <Button variant="contained" onClick={() => navigate(`./new`)}>
