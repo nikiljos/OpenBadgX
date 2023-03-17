@@ -4,6 +4,7 @@ import Loading from '../../../components/Loading'
 import useBackendData from '../../../hooks/useBackendData'
 import fetchBackend from '../../../utils/fetchBackend'
 import { LoginContext } from '../../../App'
+import { Alert } from '@mui/material'
 
 const OrgBadgeAward = () => {
   const {id}=useParams()
@@ -17,7 +18,7 @@ const OrgBadgeAward = () => {
     exist:[],
     error:[]
   })
-  const [awardStatus,updateAwardStatus]=useState(null)
+  const [alertData, updateAlertData] = useState(null);
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
   const addInputField=(e)=>{
     e.preventDefault()
@@ -41,7 +42,10 @@ const OrgBadgeAward = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    updateAwardStatus("Loading");
+    updateAlertData({
+      type: "info",
+      message: "Loading...",
+    });
     fetchBackend(`org/badge/${id}/award`,"POST",loginStatus.token,{
       recipients:inputArray
     })
@@ -53,9 +57,18 @@ const OrgBadgeAward = () => {
           email: "",
         },
       ]);
-      updateAwardStatus(res.message)
+      updateAlertData({
+        type: "success",
+        message: res.message,
+      });
     })
-    .catch(err=>console.log("error",err))
+    .catch(err=>{
+      console.log("error",err)
+      updateAlertData({
+        type: "err",
+        message: err.message||"Error",
+      });
+    })
   }
 
   if(detailLoad) return <Loading/>
@@ -89,8 +102,16 @@ const OrgBadgeAward = () => {
           <button type="submit">Award</button>
         </form>
       </div>
-      <div className="result">
-        <div className="status">{awardStatus}</div>
+
+      {alertData ? (
+        <Alert severity={alertData.type} sx={{ mt: 5 }}>
+          {alertData.message}
+        </Alert>
+      ) : (
+        ""
+      )}
+
+      {alertData&&alertData.type==="success"?(<div className="result">
         <div className="success">
           <h5>Success</h5>
           {awardResult.success.map((elt) => (
@@ -109,7 +130,7 @@ const OrgBadgeAward = () => {
             <div>{elt}</div>
           ))}
         </div>
-      </div>
+      </div>):""}
     </div>
   );
 }

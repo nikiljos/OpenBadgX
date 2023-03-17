@@ -28,7 +28,6 @@ const UserBadgeList = () => {
           </div>
         ))}
       </div>
-      <Link to="/org/badge/new">Create Badge</Link>
     </div>
   );
 };

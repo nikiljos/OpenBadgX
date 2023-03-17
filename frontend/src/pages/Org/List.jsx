@@ -4,14 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import useBackendData from "../../hooks/useBackendData";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import { LoginContext } from "../../App";
 import { Apartment } from "@mui/icons-material";
-import { Box, Button, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { Alert, Box, Button, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 
 const OrgList = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
   const [apiLoad,apiError,orgList]=useBackendData(`user/org`,[])
+  const [alertData, updateAlertData] = useState(null);
 
   const navigate = useNavigate();
 
@@ -19,11 +20,21 @@ const OrgList = () => {
   if(apiLoad) return <Loading/>
 
   const orgLogin=async(orgId)=>{
+    updateAlertData({
+      type: "info",
+      message: "Loading...",
+    });
     let orgToken = await fetchBackend("user/org/login", "POST", loginStatus.token, {
       orgId,
     })
       .then((data) => data.data.accessToken)
-      .catch((err) => console.log("Error: ", err));
+      .catch((err) => {
+        console.log("Error: ", err)
+        updateAlertData({
+          type:"error",
+          message:"Sorry, Some error occured!"
+        })
+      });
     
     if(orgToken){
       updateLoginStatus(prev=>({
@@ -43,11 +54,21 @@ const OrgList = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          flexWrap:"wrap"
         }}
       >
         <Typography variant="h5">Your Organizations</Typography>
-        <Button variant="contained">Create Org</Button>
+        <Button variant="contained" onClick={() => navigate("./new")}>
+          Create Org
+        </Button>
       </Box>
+      {alertData ? (
+        <Alert severity={alertData.type} sx={{ mt: 5 }}>
+          {alertData.message}
+        </Alert>
+      ) : (
+        ""
+      )}
       <List>
         {orgList.map((org) => (
           <ListItem disablePadding onClick={() => orgLogin(org._id)}>

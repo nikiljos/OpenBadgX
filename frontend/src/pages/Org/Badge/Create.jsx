@@ -1,4 +1,4 @@
-import { Button, FormControl, TextField } from "@mui/material";
+import { Alert, Button, FormControl, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,14 +10,11 @@ const OrgBadgeCreate = () => {
   const navigate = useNavigate();
   const [badgeTitle, updateBadgeTitle] = useState("");
   const [badgeDesc, updateBadgeDesc] = useState("");
-  const [apiResponse, updateApiResponse] = useState({
-    status: null,
-    message: null,
-  });
+  const [alertData, updateAlertData] = useState(null);
   const createBadge = async (e) => {
     e.preventDefault();
-    updateApiResponse({
-      status: "load",
+    updateAlertData({
+      type: "info",
       message: "Loading...",
     });
     let badgeStatus = await fetchBackend(
@@ -31,14 +28,14 @@ const OrgBadgeCreate = () => {
     )
       .then((res) => res.data)
       .catch((err) =>
-        updateApiResponse({
-          status: "error",
+        updateAlertData({
+          type: "error",
           message: err.message,
         })
       );
     if (badgeStatus) {
-      updateApiResponse({
-        status: "success",
+      updateAlertData({
+        type: "success",
         message: "Badge created successfully🤩",
       });
     }
@@ -73,8 +70,16 @@ const OrgBadgeCreate = () => {
         <Button type="submit" sx={{ mt: 3 }} variant="contained">
           Create
         </Button>
+
+        {alertData ? (
+          <Alert severity={alertData.type} sx={{ mt: 5 }}>
+            {alertData.message}
+          </Alert>
+        ) : (
+          ""
+        )}
       </Box>
-      {apiResponse.status && <div>{apiResponse.message}</div>}
+
       <Button sx={{ mt: 2 }} variant="outlined" onClick={() => navigate("../")}>
         View all badges
       </Button>
