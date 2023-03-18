@@ -2,6 +2,8 @@ import Loading from "../../../components/Loading";
 import Error from "../../../components/Error";
 import useBackendData from "../../../hooks/useBackendData";
 import { Link, useParams } from "react-router-dom";
+import { Box, Button, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
+import { OpenInNew } from "@mui/icons-material";
 
 const OrgBadgeAssertionList= () => {
   const {id}=useParams()
@@ -10,21 +12,34 @@ const OrgBadgeAssertionList= () => {
   if (apiError) return <Error message={apiError} />;
   if (apiLoad) return <Loading />;
   return (
-    <div>
-      <h2>Awardee List</h2>
-      <div className="awardee-list">
-        {awardeeList.map(awardee=>(
-          <div className="awardee" key={awardee._id}>
-            <div className="name">{awardee.user.name}</div>
-            <div className="email">{awardee.user.email}</div>
-            <Link to={`/badge/${awardee._id}`} target="_blank">
-              View Assertion⧉
-            </Link>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+    <Box>
+      <Typography variant="h5">Assertion history</Typography>
+      <TableContainer sx={{ maxWidth: 700 }}>
+        <Table size="small">
+          <TableBody>
+            {awardeeList.map((awardee) => (
+              <TableRow>
+                <TableCell style={{ width: 200 }}>
+                  {awardee.user.name}
+                </TableCell>
+                <TableCell>{awardee.user.email}</TableCell>
+                <TableCell align="right">
+                  <Button
+                    endIcon={<OpenInNew />}
+                    component={Link}
+                    to={`/badge/${awardee._id}`}
+                    target="_blank"
+                  >
+                    View
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
 }
 
 export default OrgBadgeAssertionList;
