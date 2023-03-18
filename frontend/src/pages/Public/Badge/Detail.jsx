@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import Error from "../../../components/Error";
 import useBackendData from "../../../hooks/useBackendData";
+import { Box, Typography } from "@mui/material";
+import BadgeDetailImage from "../../../components/BadgeDetailImage";
+import AssertionBasicData from "../../../components/AssertionBasicData";
 
 const PublicBadgeDetail = () => {
   const { id } = useParams();
@@ -17,18 +20,28 @@ const PublicBadgeDetail = () => {
 
   return (
     <div>
-      <h3>Badge Details</h3>
-      <div>
-        <h4>Badge Title</h4>
-        <div>{badgeData.title}</div>
-        <h4>Description</h4>
-        <div>{badgeData.desc}</div>
-        <div className="assert">
-          <h5>Assertion Details</h5>
-          <div className="name">Awarded to: {badgeData.assertions[0].name}</div>
-          <div className="id">Assertion ID: {badgeData.assertions[0]._id}</div>
-        </div>
-      </div>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          "&>div": {
+            mt: 3,
+          },
+        }}
+        className="sm-wrap"
+      >
+        <Box
+          sx={{
+            minWidth: 450,
+          }}
+        >
+          <Typography variant="h5">{badgeData.title}</Typography>
+          <Typography variant="body1">{badgeData.desc}</Typography>
+          <AssertionBasicData detail={badgeData.assertions[0]}/>
+        </Box>
+        <BadgeDetailImage src="https://tiny.nikjos.in/hello" />
+      </Box>
     </div>
   );
 };

@@ -18,7 +18,7 @@ const OrgBadgeAssertionList= () => {
         <Table size="small">
           <TableBody>
             {awardeeList.map((awardee) => (
-              <TableRow>
+              <TableRow key={awardee._id}>
                 <TableCell style={{ width: 200 }}>
                   {awardee.user.name}
                 </TableCell>

@@ -3,6 +3,10 @@ import { Link, useParams } from 'react-router-dom';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import useBackendData from '../../../hooks/useBackendData';
+import { Box, Button, Typography } from '@mui/material';
+import { OpenInNew } from '@mui/icons-material';
+import BadgeDetailImage from '../../../components/BadgeDetailImage';
+import AssertionBasicData from '../../../components/AssertionBasicData';
 
 const UserBadgeDetail = () => {
   const {id}=useParams()  
@@ -17,19 +21,44 @@ const UserBadgeDetail = () => {
 
   return (
     <div>
-      <h3>Badge Details</h3>
-      <div>
-        <h3>{badgeData.title}</h3>
-        <div>{badgeData.desc}</div>
-        <div className="assert">
-          <h5>Assertion Detail</h5>
-          <div className="name">{badgeData.assertions[0].name}</div>
-          <div className="id">{badgeData.assertions[0]._id}</div>
-        </div>
-        <Link to={`/badge/${badgeData.assertions[0]._id}`} target="_blank">
-          Public Verification Page⧉
-        </Link>
-      </div>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          "&>div": {
+            mt: 3,
+          },
+        }}
+        className="sm-wrap"
+      >
+        <Box
+          sx={{
+            minWidth: 450,
+          }}
+        >
+          <Typography variant="h5">{badgeData.title}</Typography>
+          <Typography variant="body1">{badgeData.desc}</Typography>
+          <AssertionBasicData detail={badgeData.assertions[0]} />
+        </Box>
+        <BadgeDetailImage src="https://tiny.nikjos.in/hello" />
+      </Box>
+
+      <Box
+        sx={{
+          mt: 2,
+        }}
+      >
+        <Button
+          component={Link}
+          to={`/badge/${badgeData.assertions[0]._id}`}
+          sx={{ mr: 5 }}
+          target="_blank"
+          endIcon={<OpenInNew />}
+        >
+          Public Verification Page
+        </Button>
+      </Box>
     </div>
   );
 }

@@ -36,7 +36,7 @@ function App() {
         <NavBar />
         <Box
           sx={{
-            p: 3,
+            p: 5,
           }}
         >
           <Routes>
