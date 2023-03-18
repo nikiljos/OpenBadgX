@@ -5,7 +5,8 @@ import useBackendData from "../../../hooks/useBackendData";
 import fetchBackend from "../../../utils/fetchBackend";
 import { LoginContext } from "../../../App";
 import BannerAlert from "../../../components/BannerAlert";
-import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
+import { Alert, AlertTitle, Badge, Box, Button, Icon, IconButton, TextField, Typography } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
 const OrgBadgeAward = () => {
   const { id } = useParams();
@@ -46,6 +47,14 @@ const OrgBadgeAward = () => {
     });
   };
 
+  const deleteInputField=(index)=>{
+    updateInputArray(prev=>{
+      let newArray=[...prev]
+      newArray.splice(index,1)
+      return newArray
+    })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     updateAlertData({
@@ -82,33 +91,6 @@ const OrgBadgeAward = () => {
 
   return (
     <div>
-      {/* <div className="detail">
-        <h3>{badgeDetail.title}</h3>
-        <div className="desc">{badgeDetail.desc}</div>
-      </div>
-      <div className="form-list">
-        <form onSubmit={handleSubmit}>
-          {inputArray.map((elt, i) => (
-            <div key={`input-grp-${i}}`}>
-              <input
-                type="text"
-                value={elt.name}
-                onChange={(e) => updateFieldValue(i, "name", e.target.value)}
-                placeholder="Name"
-              />
-              <input
-                type="email"
-                value={elt.email}
-                onChange={(e) => updateFieldValue(i, "email", e.target.value)}
-                placeholder="Email"
-              />
-            </div>
-          ))}
-          <button onClick={addInputField}>Add field</button>
-          <button type="submit">Award</button>
-        </form> 
-      </div>*/}
-
       <Box sx={{ mb: 3 }}>
         <Typography variant="h5">Award {badgeDetail.title} Badge</Typography>
       </Box>
@@ -130,6 +112,9 @@ const OrgBadgeAward = () => {
               onChange={(e) => updateFieldValue(i, "email", e.target.value)}
               label="Email"
             />
+            <IconButton onClick={() => deleteInputField(i)} sx={{ ml: 1 }}>
+              <Delete />
+            </IconButton>
           </Box>
         ))}
         <Box sx={{ mt: 3 }}>
@@ -143,28 +128,44 @@ const OrgBadgeAward = () => {
       </Box>
       <BannerAlert status={alertData} />
       {alertData && alertData.type === "success" ? (
-        <div className="result">
-          <div className="success">
-            <h5>Success</h5>
-            {awardResult.success.map((elt) => (
-              <div>{elt}</div>
-            ))}
-          </div>
-          <div className="exist">
-            <h5>Exist</h5>
-            {awardResult.exist.map((elt) => (
-              <div>{elt}</div>
-            ))}
-          </div>
-          <div className="fail">
-            <h5>Error</h5>
-            {awardResult.error.map((elt) => (
-              <div>{elt}</div>
-            ))}
-          </div>
-        </div>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            "&>div": {
+              mt: 3,
+              mr: 2,
+              width: 300,
+            },
+          }}
+        >
+          {awardResult.success.length > 0 ? (
+            <Alert severity="success">
+              <AlertTitle>Success ({awardResult.success.length})</AlertTitle>
+              {awardResult.success.map((elt) => (
+                <div>{elt}</div>
+              ))}
+            </Alert>
+          ) : null}
+          {awardResult.exist.length > 0 ? (
+            <Alert severity="warning">
+              <AlertTitle>Existing ({awardResult.exist.length})</AlertTitle>
+              {awardResult.exist.map((elt) => (
+                <div>{elt}</div>
+              ))}
+            </Alert>
+          ) : null}
+          {awardResult.error.length > 0 ? (
+            <Alert severity="error">
+              <AlertTitle>Error ({awardResult.error.length})</AlertTitle>
+              {awardResult.error.map((elt) => (
+                <div>{elt}</div>
+              ))}
+            </Alert>
+          ) : null}
+        </Box>
       ) : (
-        ""
+        null
       )}
     </div>
   );
