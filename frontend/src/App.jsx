@@ -1,43 +1,44 @@
-// import './App.css'
+import { createContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from './pages/Home';
-import Login from './pages/Login';
-import { createContext, useState } from 'react';
-import NavBar from './components/NavBar';
-import OrgList from './pages/Org/List';
-import OrgHome from './pages/Org/Home';
-import OrgCreate from './pages/Org/Create';
-import OrgBadgeList from './pages/Org/Badge/List';
-import OrgBadgeCreate from './pages/Org/Badge/Create';
-import OrgBadgeDetail from './pages/Org/Badge/Detail';
-import UserBadgeList from './pages/User/Badge/List';
-import UserBadgeDetail from './pages/User/Badge/Detail';
-import PublicBadgeDetail from './pages/Public/Badge/Detail';
-import OrgBadgeAward from './pages/Org/Badge/Award';
-import OrgBadgeAssertionList from './pages/Org/Badge/AssertionList';
 import { Box, CssBaseline } from "@mui/material";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NavBar from "./components/NavBar";
+import OrgList from "./pages/Org/List";
+import OrgHome from "./pages/Org/Home";
+import OrgCreate from "./pages/Org/Create";
+import OrgBadgeList from "./pages/Org/Badge/List";
+import OrgBadgeCreate from "./pages/Org/Badge/Create";
+import OrgBadgeDetail from "./pages/Org/Badge/Detail";
+import UserBadgeList from "./pages/User/Badge/List";
+import UserBadgeDetail from "./pages/User/Badge/Detail";
+import PublicBadgeDetail from "./pages/Public/Badge/Detail";
+import OrgBadgeAward from "./pages/Org/Badge/Award";
+import OrgBadgeAssertionList from "./pages/Org/Badge/AssertionList";
 import UserHome from "./pages/User/Home";
+import PageNotFound from "./components/PageNotFound";
 
-export const LoginContext=createContext()
+export const LoginContext = createContext();
 
 function App() {
-
   const [loginStatus, updateLoginStatus] = useState({
-    localStoreCheck:false,
+    localStoreCheck: false,
     loggedIn: false,
     token: null,
-    userDetail:null,
-    orgLogin:false,
-    orgDetail:null
+    userDetail: null,
+    orgLogin: false,
+    orgDetail: null,
   });
   return (
     <div className="App">
       <LoginContext.Provider value={{ loginStatus, updateLoginStatus }}>
         <CssBaseline />
         <NavBar />
-        <Box sx={{
-          p:3
-        }}>
+        <Box
+          sx={{
+            p: 3,
+          }}
+        >
           <Routes>
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
@@ -59,7 +60,7 @@ function App() {
               </Route>
             </Route>
             <Route path="me">
-              <Route index element={<UserHome/>}/>
+              <Route index element={<UserHome />} />
               <Route path="badge">
                 <Route index element={<UserBadgeList />} />
                 <Route path=":id" element={<UserBadgeDetail />} />
@@ -68,6 +69,7 @@ function App() {
             <Route path="badge">
               <Route path=":id" element={<PublicBadgeDetail />} />
             </Route>
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Box>
       </LoginContext.Provider>
@@ -75,4 +77,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
