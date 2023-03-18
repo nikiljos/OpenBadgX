@@ -71,7 +71,11 @@ const OrgList = () => {
       <BannerAlert status={alertData} />
       <List>
         {orgList.map((org) => (
-          <ListItem disablePadding onClick={() => orgLogin(org._id)}>
+          <ListItem
+            disablePadding
+            onClick={() => orgLogin(org._id)}
+            key={org.key}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <Apartment />

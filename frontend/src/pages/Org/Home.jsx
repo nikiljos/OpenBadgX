@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import useBackendData from "../../hooks/useBackendData";
@@ -6,9 +6,8 @@ import { Box, Button, Typography } from '@mui/material';
 
 const OrgHome = () => {
 
-    const [apiLoad, apiError, orgData] = useBackendData(`org/detail`, {});
+  const [apiLoad, apiError, orgData] = useBackendData(`org/detail`, {});
 
-  const navigate = useNavigate();
   if (apiError) return <Error message={apiError} />;
   if (apiLoad) return <Loading />;
   return (
@@ -32,16 +31,16 @@ const OrgHome = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          "& button": {
+          "& a": {
             maxWidth: 300,
             mt: 1,
           },
         }}
       >
-        <Button onClick={() => navigate("../badge/new")} variant="contained">
+        <Button component={Link} to="../badge/new" variant="contained">
           Create a Badge
         </Button>
-        <Button onClick={() => navigate("../badge")} variant="outlined">
+        <Button component={Link} to="../badge" variant="outlined">
           View Existing Badges
         </Button>
       </Box>

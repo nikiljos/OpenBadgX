@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../App";
 import fetchBackend from "../utils/fetchBackend";
 import { getLocalToken } from "../utils/localToken";

@@ -1,14 +1,13 @@
 import { Button, FormControl, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LoginContext } from "../../../App";
 import BannerAlert from "../../../components/BannerAlert";
 import fetchBackend from "../../../utils/fetchBackend";
 
 const OrgBadgeCreate = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
-  const navigate = useNavigate();
   const [badgeTitle, updateBadgeTitle] = useState("");
   const [badgeDesc, updateBadgeDesc] = useState("");
   const [alertData, updateAlertData] = useState(null);
@@ -75,7 +74,7 @@ const OrgBadgeCreate = () => {
         <BannerAlert status={alertData} />
       </Box>
 
-      <Button sx={{ mt: 2 }} variant="outlined" onClick={() => navigate("../")}>
+      <Button sx={{ mt: 2 }} variant="outlined" component={Link} to="../">
         View all badges
       </Button>
     </div>

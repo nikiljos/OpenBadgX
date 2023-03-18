@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import Error from "../../../components/Error";
 import useBackendData from "../../../hooks/useBackendData";
@@ -8,7 +8,6 @@ import BadgeCard from "../../../components/BadgeCard";
 
 const OrgBadgeList = () => {
   const [apiLoad, apiError, badgeList] = useBackendData(`org/badge`, []);
-  const navigate = useNavigate();
 
   if (apiError) return <Error message={apiError} />;
   if (apiLoad) return <Loading />;
@@ -24,11 +23,7 @@ const OrgBadgeList = () => {
         }}
       >
         <Typography variant="h5">Your Badges</Typography>
-        <Button
-          variant="contained"
-          onClick={() => navigate("./new")}
-          sx={{ m: 3 }}
-        >
+        <Button variant="contained" component={Link} to="./new" sx={{ m: 3 }}>
           Create Badge
         </Button>
       </Box>
