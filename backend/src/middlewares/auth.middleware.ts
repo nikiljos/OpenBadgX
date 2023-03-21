@@ -1,9 +1,10 @@
 import { NextFunction,Request,Response } from "express";
+import { APIError } from "../utils/error";
 import jwt from "../utils/jwt"
 
 const userAuth=(req:Request,res:Response,next:NextFunction)=>{
     if(!req.headers.authorization||typeof req.headers.authorization!=="string"){
-        return next(new Error("Invalid Auth header"))
+        return next(new APIError("Invalid Auth Header",401))
     }
     let token=req.headers.authorization!.split(" ")[1]
     jwt.checkToken(token)
@@ -18,7 +19,7 @@ const userAuth=(req:Request,res:Response,next:NextFunction)=>{
             }
             next()
         })
-        .catch((err) => next(new Error("Invalid Token")));
+        .catch((err) => next(new APIError(err.message,401)));
 }
 
 const orgAuth=(req:Request,res:Response,next:NextFunction)=>{
@@ -26,7 +27,7 @@ const orgAuth=(req:Request,res:Response,next:NextFunction)=>{
         next();
     }
     else{
-        next(new Error("Please login to an org!"))
+        next(new APIError("Please login to an org!",403))
     }
 }
 

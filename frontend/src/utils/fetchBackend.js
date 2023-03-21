@@ -19,6 +19,7 @@ const fetchBackend = (route, method, auth, reqBody, fileUpload) =>
       body,
     })
       .then((res) => {
+        if(res.status===401) reject(new Error("token_expired"))
         return res.json();
       })
       .then((data) => {

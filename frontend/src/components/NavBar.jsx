@@ -14,7 +14,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../App";
 import fetchBackend from "../utils/fetchBackend";
-import { getLocalToken } from "../utils/localToken";
+import { getLocalToken, setLocalToken } from "../utils/localToken";
 
 const NavBar = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -25,6 +25,17 @@ const NavBar = () => {
 
   const [orgMenuAnchor, setOrgMenuAnchor] = useState(null);
   const [orgMenuOpen, setOrgMenuOpen] = useState(false);
+
+  const handleTokenExpiry=()=>{
+    updateLoginStatus((prev) => ({
+      ...prev,
+      loggedIn: false,
+      token: null,
+      userDetail: null,
+      orgDetail: null,
+    }));
+    setLocalToken(null);
+  }
 
 
   //check localStorage for Token
@@ -50,7 +61,10 @@ const NavBar = () => {
           null
         )
           .then((data) => data.data)
-          .catch((err) => console.log("Error: ", err));
+          .catch((err) => {
+            console.log("Error: ", err)
+            if(err.message==="token_expired") handleTokenExpiry();
+          });
         // console.log(detail);
         detail &&
           updateLoginStatus((prev) => ({
@@ -67,7 +81,9 @@ const NavBar = () => {
           null
         )
           .then((data) => data.data)
-          .catch((err) => console.log("Error: ", err));
+          .catch((err) => {
+            console.log("Error:", err)  
+          });
 
         orgDetail &&
           updateLoginStatus((prev) => ({
