@@ -21,7 +21,7 @@ const assertionDetail=(assertionId:string)=>
     Badge.findOne({
         assertions:{
             $elemMatch: {
-                id:assertionId
+                _id:assertionId
             }
         }
     },{
