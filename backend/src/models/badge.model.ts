@@ -12,6 +12,10 @@ const badgeSchema = new Schema({
         type: Types.ObjectId,
         ref: "orgs",
     },
+    template:{
+        type:String,
+        required:true
+    },
     assertions:[
         {
             name:{

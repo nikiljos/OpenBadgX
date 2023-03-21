@@ -2,3 +2,9 @@
 .mono{
   font-family: monospace;
 }
+
+@media (max-width:800px){
+  .sm-wrap{
+    flex-wrap: wrap;
+  }
+}

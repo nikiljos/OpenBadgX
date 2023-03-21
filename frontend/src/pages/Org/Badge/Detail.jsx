@@ -5,6 +5,7 @@ import Error from '../../../components/Error';
 import useBackendData from '../../../hooks/useBackendData';
 import { Box, Button, Typography } from '@mui/material';
 import BadgeDetailImage from '../../../components/BadgeDetailImage';
+import { getS3Url } from '../../../utils/getS3Url';
 
 const OrgBadgeDetail = () => {
   const {id}=useParams()  
@@ -20,7 +21,6 @@ const OrgBadgeDetail = () => {
       <Box
         sx={{
           display: "flex",
-          flexWrap: "wrap",
           justifyContent: "space-between",
           "&>div": {
             mt: 3,
@@ -36,7 +36,13 @@ const OrgBadgeDetail = () => {
           <Typography variant="h5">{apiData.title}</Typography>
           <Typography variant="body1">{apiData.desc}</Typography>
         </Box>
-        <BadgeDetailImage src="https://tiny.nikjos.in/hello" />
+        <BadgeDetailImage
+          src={
+            apiData.template
+              ? getS3Url("templates", apiData.template)
+              : "/img/thumbnail.jpg"
+          }
+        />
       </Box>
 
       <Box

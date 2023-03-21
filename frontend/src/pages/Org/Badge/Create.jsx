@@ -1,5 +1,5 @@
-import { Button, FormControl, TextField } from "@mui/material";
-import { Box } from "@mui/system";
+import { Button, CircularProgress, FormControl, TextField, Box } from "@mui/material";
+import { Done,Close } from "@mui/icons-material";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../../../App";
@@ -10,9 +10,28 @@ const OrgBadgeCreate = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
   const [badgeTitle, updateBadgeTitle] = useState("");
   const [badgeDesc, updateBadgeDesc] = useState("");
+  const [badgeTemplate,updateBadgeTemplate]=useState(null)
   const [alertData, updateAlertData] = useState(null);
+  const [fileLoad,updateFileLoad] = useState(false)
+  const handleUpload = async (e) => {
+    updateFileLoad(true)
+    const files=e.target.files
+    const formData = new FormData();
+    console.log(files[0])
+    formData.append("template", files[0]);
+    let fileData=await fetchBackend("org/badge/upload","POST",loginStatus.token,formData,true)
+    .catch(err=>{
+      console.log("err",err)
+      updateBadgeTemplate(null)
+      updateFileLoad(false)
+    })
+    console.log(fileData)
+    updateBadgeTemplate(fileData.data.file)
+    updateFileLoad(false);
+    console.log(fileData)
+  };
   const createBadge = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     updateAlertData({
       type: "info",
       message: "Loading...",
@@ -24,6 +43,7 @@ const OrgBadgeCreate = () => {
       {
         title: badgeTitle,
         desc: badgeDesc,
+        template: badgeTemplate
       }
     )
       .then((res) => res.data)
@@ -44,8 +64,7 @@ const OrgBadgeCreate = () => {
     <div>
       <h3>Create Badge</h3>
       <Box
-        component="form"
-        onSubmit={createBadge}
+        // component="form"
         sx={{
           maxWidth: 700,
         }}
@@ -67,7 +86,35 @@ const OrgBadgeCreate = () => {
             multiline={true}
           />
         </FormControl>
-        <Button type="submit" sx={{ mt: 3 }} variant="contained">
+        <Box
+          sx={{
+            mt:3,
+            display:"flex",
+            alignItems:"center"
+          }}
+        >
+
+            <Button variant="outlined" component="label" sx={{mr:1}}>
+              Upload Template
+              <input
+                accept="image/*"
+                type="file"
+                id="template"
+                style={{ display: "none" }}
+                onChange={handleUpload}
+              />
+            </Button>
+            {fileLoad?<CircularProgress size={24}/>:(
+              badgeTemplate?<Done />:<Close />
+            )}
+            
+        </Box>
+        <Button
+          type="submit"
+          sx={{ mt: 3 }}
+          variant="contained"
+          onClick={createBadge}
+        >
           Create
         </Button>
 

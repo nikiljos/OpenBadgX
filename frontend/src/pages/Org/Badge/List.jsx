@@ -5,6 +5,7 @@ import useBackendData from "../../../hooks/useBackendData";
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import BadgeCard from "../../../components/BadgeCard";
+import { getS3Url } from "../../../utils/getS3Url";
 
 const OrgBadgeList = () => {
   const [apiLoad, apiError, badgeList] = useBackendData(`org/badge`, []);
@@ -36,7 +37,11 @@ const OrgBadgeList = () => {
         {badgeList.map((badge) => (
           <BadgeCard
             id={badge._id}
-            image="https://tiny.nikjos.in/hello"
+            image={
+              badge.template
+                ? getS3Url("templates", badge.template)
+                : "/img/thumbnail.jpg"
+            }
             title={badge.title}
             desc={badge.desc}
             key={badge._id}

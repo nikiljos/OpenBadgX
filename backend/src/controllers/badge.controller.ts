@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import badgeService from "../services/badge.service";
 
-const createBadge=async (req:Request,res:Response)=>{
-    let {title,desc}=req.body
+const createBadge=async (req:Request,res:Response,next:NextFunction)=>{
+    let {title,desc,template}=req.body
+    if(!template || !template.id) next(new Error("Invalid image"))
     let {orgId}=res.locals;
-    let badgeId=await badgeService.createBadge(title,desc,orgId)
+    let badgeId=await badgeService.createBadge(title,desc,orgId,template.id,template.type)
     res.status(200).send({
         success:true,
         message:"Badge/Cert created successfully!",
@@ -35,8 +36,23 @@ const badgeDetail=async(req:Request,res:Response)=>{
     })
 }
 
+const templateUpload=async(req:Request,res:Response)=>{
+    if(!req.file) throw(new Error("No File"))
+    res.status(200).send({
+        success:true,
+        message:"Upload Success!",
+        data:{
+            file:{
+                id:req.file.filename,
+                type:req.file.mimetype.split("/")[1]
+            }
+        }
+    })
+}
+
 export default {
     createBadge,
     listBadge,
+    templateUpload,
     badgeDetail
 }

@@ -25,7 +25,13 @@ const Login = () => {
           gAuthToken,
         })
           .then((data) => data.data.accessToken)
-          .catch((err) => console.log("Error: ", err));
+          .catch((err) => {
+            console.log("Error: ", err)
+            updateAlertData({
+              type: "error",
+              message: "Login Failed!",
+            });
+          });
         if (!token) return;
         updateLoginStatus((prev) => ({
           ...prev,

@@ -6,6 +6,7 @@ import useBackendData from "../../../hooks/useBackendData";
 import { Box, Typography } from "@mui/material";
 import BadgeDetailImage from "../../../components/BadgeDetailImage";
 import AssertionBasicData from "../../../components/AssertionBasicData";
+import { getS3Url } from "../../../utils/getS3Url";
 
 const PublicBadgeDetail = () => {
   const { id } = useParams();
@@ -23,7 +24,6 @@ const PublicBadgeDetail = () => {
       <Box
         sx={{
           display: "flex",
-          flexWrap: "wrap",
           justifyContent: "space-between",
           "&>div": {
             mt: 3,
@@ -38,9 +38,15 @@ const PublicBadgeDetail = () => {
         >
           <Typography variant="h5">{badgeData.title}</Typography>
           <Typography variant="body1">{badgeData.desc}</Typography>
-          <AssertionBasicData detail={badgeData.assertions[0]}/>
+          <AssertionBasicData detail={badgeData.assertions[0]} />
         </Box>
-        <BadgeDetailImage src="https://tiny.nikjos.in/hello" />
+        <BadgeDetailImage
+          src={
+            badgeData.template
+              ? getS3Url("templates", badgeData.template)
+              : "/img/thumbnail.jpg"
+          }
+        />
       </Box>
     </div>
   );

@@ -27,6 +27,7 @@ const assertionDetail=(assertionId:string)=>
     },{
         title:1,
         desc:1,
+        template:1,
         "assertions.$":1
     })
 

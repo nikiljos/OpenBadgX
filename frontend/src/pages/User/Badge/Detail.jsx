@@ -7,6 +7,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { OpenInNew } from '@mui/icons-material';
 import BadgeDetailImage from '../../../components/BadgeDetailImage';
 import AssertionBasicData from '../../../components/AssertionBasicData';
+import { getS3Url } from '../../../utils/getS3Url';
 
 const UserBadgeDetail = () => {
   const {id}=useParams()  
@@ -24,7 +25,6 @@ const UserBadgeDetail = () => {
       <Box
         sx={{
           display: "flex",
-          flexWrap: "wrap",
           justifyContent: "space-between",
           "&>div": {
             mt: 3,
@@ -41,7 +41,13 @@ const UserBadgeDetail = () => {
           <Typography variant="body1">{badgeData.desc}</Typography>
           <AssertionBasicData detail={badgeData.assertions[0]} />
         </Box>
-        <BadgeDetailImage src="https://tiny.nikjos.in/hello" />
+        <BadgeDetailImage
+          src={
+            badgeData.template
+              ? getS3Url("templates", badgeData.template)
+              : "/img/thumbnail.jpg"
+          }
+        />
       </Box>
 
       <Box

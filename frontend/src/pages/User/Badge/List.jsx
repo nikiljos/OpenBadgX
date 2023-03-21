@@ -3,6 +3,7 @@ import Error from "../../../components/Error";
 import useBackendData from "../../../hooks/useBackendData";
 import { Box } from "@mui/material";
 import BadgeCard from "../../../components/BadgeCard";
+import { getS3Url } from "../../../utils/getS3Url";
 
 const UserBadgeList = () => {
   const [apiLoad, apiError, badgeList] = useBackendData(`user/badge`, []);
@@ -22,7 +23,7 @@ const UserBadgeList = () => {
         {badgeList.map((badge) => (
           <BadgeCard
             id={badge._id}
-            image="https://tiny.nikjos.in/hello"
+            image={badge.template?getS3Url("templates",badge.template):"/img/thumbnail.jpg"}
             title={badge.title}
             desc={badge.desc}
             key={badge._id}
@@ -30,7 +31,7 @@ const UserBadgeList = () => {
               {
                 title: "Details",
                 route: `./${badge.assertions._id}`,
-              }
+              },
             ]}
           />
         ))}
