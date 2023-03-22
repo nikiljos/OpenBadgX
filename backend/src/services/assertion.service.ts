@@ -30,6 +30,7 @@ const assertionDetail=(assertionId:string)=>
         template:1,
         "assertions.$":1
     })
+    .populate("org","key name")
 
 
 export default{
