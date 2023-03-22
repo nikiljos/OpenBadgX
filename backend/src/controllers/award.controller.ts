@@ -1,6 +1,5 @@
 import { Request,Response } from "express"
 import awardService from "../services/award.service";
-import badgeService from "../services/badge.service";
 
 interface AwardBody{
     recipients:[UserDetail]

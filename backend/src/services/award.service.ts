@@ -54,6 +54,7 @@ const listAwardees = (badgeId: string, orgId: string) =>
         .select({
             assertions: {
                 user: 1,
+                _id:1
             },
         });
 
