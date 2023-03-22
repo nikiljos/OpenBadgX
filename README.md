@@ -13,8 +13,8 @@
 |-----|-----|------|
 |**Back-end**|👇|🔗|
 |NodeJs - setting up a project with package.json|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
-|NodeJS Modules||[-](#)|
-|fs Module||[-](#)|
+|NodeJS Modules|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
+|fs Module|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
 |Streams and Buffers||[-](#)|
 |NPM|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
 |Nodemon|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
@@ -31,7 +31,7 @@
 |Simple API - CRUD Operations using NodeJs||[-](#)|
 |Schemas and Models|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |Indexes||[-](#)|
-|Aggregations||[-](#)|
+|Aggregations|✔️|[PR #9](https://github.com/kalviumcommunity/openbadgx/pull/9)|
 |**Front-end and Full Stack**|👇|🔗|
 |Low-fid design for your application||[-](#)|
 |High-fid design for your application||[-](#)|
@@ -40,7 +40,7 @@
 |Application deployed|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
 |IDE Setup|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1YmTkldijAOL4Ud4fXhDXhL1tDXxeypmZ)|
 |NodeJs REPL||[-](#)|
-|Using the public folder to serve files||[-](#)|
+|Using the public folder to serve files|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
 |Postman Use for Testing|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/13uE0Cd6R2MFbk2D8W8dvTnb7pqzqAPLt)|
 |Authentication|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |Deployment|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
@@ -55,4 +55,7 @@
 |CORS|✔️|[PR #5](https://github.com/kalviumcommunity/openbadgx/pull/5)|
 |Custom Express error middleware|✔️|[PR #6](https://github.com/kalviumcommunity/openbadgx/pull/6)|
 |`useState`, `useEffect`, `useContext` Hooks|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
+|Custom Hooks|✔️|[PR #8](https://github.com/kalviumcommunity/openbadgx/pull/8)|
+|Material UI|✔️|[PR #13](https://github.com/kalviumcommunity/openbadgx/pull/13)|
+|AWS S3|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
 |...||[-](#)|
