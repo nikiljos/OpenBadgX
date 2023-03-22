@@ -139,15 +139,14 @@ const OrgBadgeAward = () => {
             },
           }}
         >
-          {awardResult.success.length > 0 ? (
+          {awardResult.success && awardResult.success.length > 0 ? (
             <Alert severity="success">
               <AlertTitle>Success ({awardResult.success.length})</AlertTitle>
-              {awardResult.success.map((elt) => (
-                <div>{elt}</div>
-              ))}
+              {awardResult.success &&
+                awardResult.success.map((elt) => <div>{elt}</div>)}
             </Alert>
           ) : null}
-          {awardResult.exist.length > 0 ? (
+          {awardResult.exist && awardResult.exist.length > 0 ? (
             <Alert severity="warning">
               <AlertTitle>Existing ({awardResult.exist.length})</AlertTitle>
               {awardResult.exist.map((elt) => (
@@ -155,7 +154,7 @@ const OrgBadgeAward = () => {
               ))}
             </Alert>
           ) : null}
-          {awardResult.error.length > 0 ? (
+          {awardResult.error&&awardResult.error.length > 0 ? (
             <Alert severity="error">
               <AlertTitle>Error ({awardResult.error.length})</AlertTitle>
               {awardResult.error.map((elt) => (
@@ -164,9 +163,7 @@ const OrgBadgeAward = () => {
             </Alert>
           ) : null}
         </Box>
-      ) : (
-        null
-      )}
+      ) : null}
     </div>
   );
 };

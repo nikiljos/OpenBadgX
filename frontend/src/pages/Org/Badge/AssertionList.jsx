@@ -17,24 +17,25 @@ const OrgBadgeAssertionList= () => {
       <TableContainer sx={{ maxWidth: 700 }}>
         <Table size="small">
           <TableBody>
-            {awardeeList.map((awardee) => (
-              <TableRow key={awardee._id}>
-                <TableCell style={{ width: 200 }}>
-                  {awardee.user.name}
-                </TableCell>
-                <TableCell>{awardee.user.email}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    endIcon={<OpenInNew />}
-                    component={Link}
-                    to={`/badge/${awardee._id}`}
-                    target="_blank"
-                  >
-                    View
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {awardeeList &&
+              awardeeList.map((awardee) => (
+                <TableRow key={awardee._id}>
+                  <TableCell style={{ width: 200 }}>
+                    {awardee.user&&awardee.user.name}
+                  </TableCell>
+                  <TableCell>{awardee.user.email}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      endIcon={<OpenInNew />}
+                      component={Link}
+                      to={`/badge/${awardee._id}`}
+                      target="_blank"
+                    >
+                      View
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
