@@ -9,42 +9,42 @@
 
 
 ### Progress Tracking
-|Content|Status|Resource Link|
-|-----|-----|------|
-|**Back-end**|👇|🔗|
-|NodeJs - setting up a project with package.json|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
-|NodeJS Modules|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
-|fs Module|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
+|Content|Status|Resource Link|Check-In|
+|-----|-----|------|------|
+|**Back-end**|👇|🔗|🗓️|
+|NodeJs - setting up a project with package.json|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|20th March|
+|NodeJS Modules|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|3rd April|
+|fs Module|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|3rd April|
 |Streams and Buffers||[-](#)|
-|NPM|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
-|Nodemon|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
+|NPM|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|20th March|
+|Nodemon|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|20th March|
 |Events in Nodejs||[-](#)|
-|Express JS - first route|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|
-|ExpressJS - additional routes|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
+|Express JS - first route|✔️|[PR #1](https://github.com/kalviumcommunity/openbadgx/pull/1)|20th March|
+|ExpressJS - additional routes|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|20th March|
 |Template Engines||[-](#)|
 |Partials||[-](#)|
-|Middlewares|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
-|**Databases**|👇|🔗|
-|MongoDB - Installations and Basics|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1cYWrXWQUlxO85u704mKppvoHq-VVdLbV)|
-|Mongoose|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|Middlewares|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|20th March|
+|**Databases**|👇|🔗|🗓️|
+|MongoDB - Installations and Basics|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1cYWrXWQUlxO85u704mKppvoHq-VVdLbV)|6th March|
+|Mongoose|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|6th March|
 |CRUD Operations||[-](#)|
 |Simple API - CRUD Operations using NodeJs||[-](#)|
-|Schemas and Models|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|Schemas and Models|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|6th March|
 |Indexes||[-](#)|
 |Aggregations|✔️|[PR #9](https://github.com/kalviumcommunity/openbadgx/pull/9)|
-|**Front-end and Full Stack**|👇|🔗|
+|**Front-end and Full Stack**|👇|🔗|🗓️|
 |Low-fid design for your application||[-](#)|
 |High-fid design for your application||[-](#)|
-|ReactJS app initialization|✔️|[PR #3](https://github.com/kalviumcommunity/openbadgx/pull/3)|
-|Application components created|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
-|Application deployed|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
+|ReactJS app initialization|✔️|[PR #3](https://github.com/kalviumcommunity/openbadgx/pull/3)|3rd April|
+|Application components created|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|3rd April|
+|Application deployed|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|3rd April|
 |IDE Setup|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1YmTkldijAOL4Ud4fXhDXhL1tDXxeypmZ)|
 |NodeJs REPL||[-](#)|
-|Using the public folder to serve files|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
-|Postman Use for Testing|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/13uE0Cd6R2MFbk2D8W8dvTnb7pqzqAPLt)|
-|Authentication|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
-|Deployment|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
-|**Extra Topics**|👇|🔗|
+|Using the public folder to serve files|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|3rd April|
+|Postman Use for Testing|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/13uE0Cd6R2MFbk2D8W8dvTnb7pqzqAPLt)|3rd April|
+|Authentication|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|3rd April|
+|Deployment|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|3rd April|
+|**Extra Topics**|👇|🔗|🗓️|
 |Type Interface|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |Type Declaration Merging|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |`dotenv`|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
