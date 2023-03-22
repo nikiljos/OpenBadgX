@@ -13,6 +13,7 @@ const PublicBadgeDetail = () => {
   console.log(id);
   const [apiLoad, apiError, badgeData] = useBackendData(`detail/${id}`, {
     assertions: [{}],
+    org:{}
   },true);
 
   if (apiError) return <Error message={apiError} />;
@@ -38,7 +39,7 @@ const PublicBadgeDetail = () => {
         >
           <Typography variant="h5">{badgeData.title}</Typography>
           <Typography variant="body1">{badgeData.desc}</Typography>
-          <AssertionBasicData detail={badgeData.assertions[0]} />
+          <AssertionBasicData detail={badgeData.assertions[0]} org={badgeData.org}/>
         </Box>
         <BadgeDetailImage
           src={
