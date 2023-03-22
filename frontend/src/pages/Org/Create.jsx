@@ -3,6 +3,7 @@ import fetchBackend from '../../utils/fetchBackend';
 import { LoginContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import BannerAlert from '../../components/BannerAlert';
+import { Box, Button, FormControl, TextField, Typography } from '@mui/material';
 
 const OrgCreate = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -42,25 +43,39 @@ const OrgCreate = () => {
   }
   return (
     <div>
-      <h3>Create an organization</h3>
-      <form onSubmit={createOrg}>
-        <input
-          type="text"
-          value={orgName}
-          onChange={(e) => updateOrgName(e.target.value)}
-          placeholder="Name"
-        />
-        <input
-          type="text"
-          value={orgKey}
-          onChange={(e) => updateOrgKey(e.target.value)}
-          placeholder="Key"
-        />
+      <Typography variant="h5">Create Organization</Typography>
+      <Box sx={{
+          maxWidth: 700,
+        }}
+      >
+        <FormControl fullWidth={true} margin="normal">
+          <TextField
+            variant="outlined"
+            value={orgName}
+            onChange={(e) => updateOrgName(e.target.value)}
+            label="Organizaton Name"
+          />
+        </FormControl>
+        <FormControl fullWidth={true} margin="normal">
+          <TextField
+            variant="outlined"
+            value={orgKey}
+            onChange={(e) => updateOrgKey(e.target.value)}
+            label="Unique Org ID"
+          />
+        </FormControl>
 
-        <button type="submit">Create Org</button>
-      </form>
+        <Button
+          type="submit"
+          sx={{ mt: 3 }}
+          variant="contained"
+          onClick={createOrg}
+        >
+          Create
+        </Button>
 
-      <BannerAlert status={alertData} />
+        <BannerAlert status={alertData} />
+      </Box>
     </div>
   );
 }

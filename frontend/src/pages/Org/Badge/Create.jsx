@@ -1,4 +1,4 @@
-import { Button, CircularProgress, FormControl, TextField, Box } from "@mui/material";
+import { Button, CircularProgress, FormControl, TextField, Box, Typography } from "@mui/material";
 import { Done,Close } from "@mui/icons-material";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
@@ -62,9 +62,8 @@ const OrgBadgeCreate = () => {
   };
   return (
     <div>
-      <h3>Create Badge</h3>
+      <Typography variant="h5">Create Badge</Typography>
       <Box
-        // component="form"
         sx={{
           maxWidth: 700,
         }}
