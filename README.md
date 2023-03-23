@@ -39,7 +39,7 @@
 |Application components created|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|3rd April|
 |Application deployed|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|3rd April|
 |IDE Setup|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1YmTkldijAOL4Ud4fXhDXhL1tDXxeypmZ)|
-|NodeJs REPL||[-](#)|
+|NodeJs REPL|✔️|[Screenshots](https://drive.google.com/drive/folders/1cHErBwimXXWMiwhadg4yz2noo6UMw_nv)|
 |Using the public folder to serve files|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|3rd April|
 |Postman Use for Testing|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/13uE0Cd6R2MFbk2D8W8dvTnb7pqzqAPLt)|3rd April|
 |Authentication|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|3rd April|
