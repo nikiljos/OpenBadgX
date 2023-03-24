@@ -18,6 +18,7 @@ const badgeSchema = new Schema({
     },
     assertions:[
         {
+            _id:Types.ObjectId,
             name:{
                 type:String,
                 required:true
