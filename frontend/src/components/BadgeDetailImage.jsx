@@ -5,10 +5,11 @@ const BadgeDetailImage = ({src}) => {
     <Box
       className="badge-image-box"
       sx={{
-        minWidth: "30vw",
-        maxWidth: 340,
-        // border: "1px solid black",
+        width:"500px",
+        // minWidth: "30vw",
+        // maxWidth: "80vw",
         aspectRatio: "9/5",
+        flexShrink:0, 
       }}
     >
       <img

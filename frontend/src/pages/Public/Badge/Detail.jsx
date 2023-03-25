@@ -26,17 +26,10 @@ const PublicBadgeDetail = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          "&>div": {
-            mt: 3,
-          },
         }}
         className="sm-wrap"
       >
-        <Box
-          sx={{
-            minWidth: 450,
-          }}
-        >
+        <Box>
           <Typography variant="h5">{badgeData.title}</Typography>
           <Typography variant="body1">{badgeData.desc}</Typography>
           <AssertionBasicData detail={badgeData.assertions[0]} org={badgeData.org}/>
