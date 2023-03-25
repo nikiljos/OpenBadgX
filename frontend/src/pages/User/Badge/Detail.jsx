@@ -38,11 +38,7 @@ const UserBadgeDetail = () => {
           />
         </Box>
         <BadgeDetailImage
-          src={
-            badgeData.template
-              ? getS3Url("templates", badgeData.template)
-              : "/img/thumbnail.jpg"
-          }
+          src={getS3Url("templates", badgeData.template)}
         />
       </Box>
 

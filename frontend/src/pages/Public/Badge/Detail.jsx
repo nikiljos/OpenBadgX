@@ -35,11 +35,7 @@ const PublicBadgeDetail = () => {
           <AssertionBasicData detail={badgeData.assertions[0]} org={badgeData.org}/>
         </Box>
         <BadgeDetailImage
-          src={
-            badgeData.template
-              ? getS3Url("templates", badgeData.template)
-              : "/img/thumbnail.jpg"
-          }
+          src={getS3Url("templates", badgeData.template)}
         />
       </Box>
     </div>

@@ -37,11 +37,7 @@ const OrgBadgeList = () => {
         {badgeList.map((badge) => (
           <BadgeCard
             id={badge._id}
-            image={
-              badge.template
-                ? getS3Url("templates", badge.template)
-                : "/img/thumbnail.jpg"
-            }
+            image={getS3Url("templates", badge.template)}
             title={badge.title}
             desc={badge.desc}
             key={badge._id}

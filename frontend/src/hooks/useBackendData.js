@@ -19,7 +19,8 @@ const useBackendData = (route, intialData, loginNotRequried) => {
           updateData(data);
         })
         .catch((err) => updateErrorStatus(err.message));
-    } else {
+    }
+    else if (loginStatus.localStorageCheck) {
       updateLoadStatus(false);
       updateErrorStatus("Not logged in!");
     }

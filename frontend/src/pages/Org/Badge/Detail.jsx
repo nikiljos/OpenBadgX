@@ -30,11 +30,7 @@ const OrgBadgeDetail = () => {
           <Typography variant="body1">{apiData.desc}</Typography>
         </Box>
         <BadgeDetailImage
-          src={
-            apiData.template
-              ? getS3Url("templates", apiData.template)
-              : "/img/thumbnail.jpg"
-          }
+          src={getS3Url("templates", apiData.template)}
         />
       </Box>
 
