@@ -39,15 +39,16 @@ const badgeDetail=async(req:Request,res:Response)=>{
 const templateUpload=async(req:Request,res:Response)=>{
     if(!req.file) throw(new Error("No File"))
     res.status(200).send({
-        success:true,
-        message:"Upload Success!",
-        data:{
-            file:{
-                id:req.file.filename,
-                type:req.file.mimetype.split("/")[1]
-            }
-        }
-    })
+        success: true,
+        message: "Upload Success!",
+        data: {
+            file: {
+                id: req.file.filename,
+                // type:req.file.mimetype.split("/")[1]
+                type: req.file.mimetype,
+            },
+        },
+    });
 }
 
 export default {

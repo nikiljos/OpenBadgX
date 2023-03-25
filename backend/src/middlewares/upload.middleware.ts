@@ -3,7 +3,7 @@ import multer, { FileFilterCallback } from "multer";
 
 const fileFilter=(req:Request,file:Express.Multer.File,cb:FileFilterCallback)=>{
     if(!(file.mimetype === "image/png"||file.mimetype === "image/jpeg"||file.mimetype === 'image/jpg')){
-        cb(null,false)
+        cb(new Error("Invalid file type"))
     }
     cb(null,true)
 }

@@ -6,9 +6,10 @@ import s3 from "../utils/s3";
 const createBadge=(title:string,desc:string,org:string,fileName:string,fileType:string)=>new Promise(async(resolve,reject)=>{
     const _id=new Types.ObjectId()
     const filePath = "tmp/uploads/templates";
-    const fileKey=_id+"."+fileType
+    // const fileKey=_id+"."+fileType
+    const fileKey = _id
     const s3Response=await s3
-        .uploadFile(filePath, fileName, "templates/" + fileKey)
+        .uploadFile(filePath, fileName, "templates/" + fileKey,fileType)
         .catch((err) => reject(err));
     s3Response&&fs.unlink(filePath+"/"+fileName,()=>{
         // console.log("deleted",fileName)

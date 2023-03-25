@@ -15,15 +15,29 @@ const OrgBadgeCreate = () => {
   const [fileLoad,updateFileLoad] = useState(false)
   const handleUpload = async (e) => {
     updateFileLoad(true)
+    updateAlertData(null)
     const files=e.target.files
     const formData = new FormData();
     console.log(files[0])
     formData.append("template", files[0]);
+    if(files[0].size>=1000*1005){
+      updateBadgeTemplate(null);
+      updateFileLoad(false);
+      updateAlertData({
+        type: "error",
+        message: "Image should be lesser than 1 MB",
+      });
+      return
+    }
     let fileData=await fetchBackend("org/badge/upload","POST",loginStatus.token,formData,true)
     .catch(err=>{
       console.log("err",err)
       updateBadgeTemplate(null)
       updateFileLoad(false)
+      updateAlertData({
+        type: "error",
+        message: err.message,
+      });
     })
     console.log(fileData)
     updateBadgeTemplate(fileData.data.file)

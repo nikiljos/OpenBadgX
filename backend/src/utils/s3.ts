@@ -11,7 +11,7 @@ const client = new S3Client({
     },
 });
 
-const uploadFile = (sourcePath: string, sourceName: string, fileKey: string) =>
+const uploadFile = (sourcePath: string, sourceName: string, fileKey: string, fileType:string) =>
     new Promise(async (resolve, reject) => {
         const fileData = await readFile(`${sourcePath}/${sourceName}`).catch(
             (err) => reject(err)
@@ -21,6 +21,7 @@ const uploadFile = (sourcePath: string, sourceName: string, fileKey: string) =>
                 Bucket: process.env.S3_BUCKET,
                 Key: fileKey,
                 Body: fileData,
+                ContentType: fileType
             });
 
             const s3Response = await client
