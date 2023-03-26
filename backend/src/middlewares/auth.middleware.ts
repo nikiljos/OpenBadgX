@@ -7,12 +7,13 @@ const userAuth=(req:Request,res:Response,next:NextFunction)=>{
         return next(new APIError("Invalid Auth Header",401))
     }
     let token=req.headers.authorization!.split(" ")[1]
-    jwt.checkToken(token)
+    jwt.checkToken(token,"accesstoken")
         .then((data) => {
-            res.locals.userId = data.userId;
-            if(data.orgId){
+            res.locals.userId = data.sub;
+            res.locals.tokenExpiry=data.exp;
+            if(data.org){
                 res.locals.orgLogin=true;
-                res.locals.orgId=data.orgId;
+                res.locals.orgId=data.org;
             }
             else{
                 res.locals.orgLogin=false;

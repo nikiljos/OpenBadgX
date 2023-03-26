@@ -8,7 +8,7 @@ const googleAuth=async (req:Request,res:Response,next:NextFunction)=>{
 
     let user=gData&&await checkUser(gData.email,gData.name,gData.picture)
 
-    let accessToken=user&&await jwt.generateToken(user)
+    let accessToken=user&&await jwt.generateToken(user,"accesstoken","1d")
     
     accessToken&&res.status(200).send({
         success:true,

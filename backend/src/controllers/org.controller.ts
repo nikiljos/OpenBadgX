@@ -4,11 +4,13 @@ import jwt from "../utils/jwt";
 
 const createOrg=async (req:Request,res:Response)=>{
     let {key,name}=req.body;
-    let adminUser=res.locals.userId;
-    
+    let adminUser=res.locals.userId;    
     let validKey=await orgService.isKeyAvailable(key)
     let orgId=validKey&&await orgService.createOrg(key,name,adminUser)
-    let token=orgId&&await jwt.generateToken(adminUser,orgId);
+
+    let tokenTTL = res.locals.tokenExpiry - Math.floor(Date.now() / 1000);
+    let token=orgId&&await jwt.generateToken(adminUser,"accesstoken",tokenTTL,orgId);
+
     res.status(200).send({
         success:true,
         message:"Org created successfully!",
@@ -33,7 +35,12 @@ const loginOrg=async (req:Request,res:Response)=>{
     let {userId}=res.locals
     let {orgId}=req.body
     let verifyAdmin=await orgService.isOrgAdmin(orgId,userId);
-    let token=verifyAdmin&&await jwt.generateToken(userId,orgId);
+
+    //calculate ttl based on exisiting token expiry 
+    //so that it can't be infinitely used to create new tokens
+    let tokenTTL = res.locals.tokenExpiry - Math.floor(Date.now() / 1000);;
+    let token=verifyAdmin&&await jwt.generateToken(userId, "accesstoken", tokenTTL, orgId);
+
     res.status(200).send({
         success:true,
         data:{

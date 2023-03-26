@@ -1,23 +1,27 @@
 import jwt, { JwtPayload } from 'jsonwebtoken'
 const jwtSecret = process.env.JWT_SECRET;
+const jwtAudience = process.env.JWT_AUDIENCE;
 
 //declaration merging to extend JwtPayload type
 declare module "jsonwebtoken" {
     export interface JwtPayload {
-        userId: string;
+        type:string;
+        org: string | null;
     }
 }
 
-const generateToken = (userId:string,org?:string) =>
+const generateToken = (sub:string,type:string,expiry?:string|number,org?:string) =>
     new Promise((resolve, reject) => {
         jwt.sign(
             {
-                userId,
-                orgId:org||null
+                type,
+                org: org || null,
             },
             jwtSecret,
             {
-                expiresIn: "1d",
+                subject: sub,
+                expiresIn: expiry || "-10s",
+                audience: jwtAudience,
             },
             (err, token) => {
                 if (err) {
@@ -28,14 +32,25 @@ const generateToken = (userId:string,org?:string) =>
         );
     });
 
-const checkToken = (token: string) =>
+const checkToken = (token: string,type:string) =>
     new Promise<JwtPayload>((resolve, reject) => {
-        jwt.verify(token, jwtSecret, (err, decoded) => {
-            if (err) {
-                reject(err);
+        jwt.verify(
+            token, 
+            jwtSecret,
+            {
+                audience:jwtAudience,
+                maxAge:"2d"
+            }, 
+            (err, decoded:any) => {
+                if (err) {
+                    reject(err);
+                }
+                else if(decoded?.type!==type){
+                    reject(new Error("Invalid Type")) 
+                }
+                resolve(decoded as JwtPayload);
             }
-            resolve(decoded as JwtPayload);
-        });
+        );
     });
 
 export default {
