@@ -18,22 +18,21 @@ const client = new SESClient({
 
 export const sendMail = (
     template: string,
-    fromName:string,
-    fromEmail: string,
     toEmail: string,
-    variableData: object
+    variableData: object,
+    fromName?: string,
+    fromEmail?: string
 ) => {
-    const sendCommand=new SendTemplatedEmailCommand({
-        Source:`${fromName} <${fromEmail}>`,
-        Template:template,
-        Destination:{
-            ToAddresses:[toEmail]
+    const sendCommand = new SendTemplatedEmailCommand({
+        Source: `${fromName||SES_SENDER_NAME} <${fromEmail||SES_SENDER_ADDRESS}>`,
+        Template: template,
+        Destination: {
+            ToAddresses: [toEmail],
         },
-        TemplateData:JSON.stringify(variableData)
-    })
-    
-    return client.send(sendCommand)
+        TemplateData: JSON.stringify(variableData),
+    });
 
+    return client.send(sendCommand);
 };
 
 export const syncTemplate = (createNew:boolean, tempName: string,subject:string, htmlContent?: string, plainContent?:string) => {
@@ -72,8 +71,6 @@ export const triggerNextMail = async () => {
     console.log(mailData.recepient?.email);
     const mailRes = await sendMail(
         mailData.template,
-        SES_SENDER_NAME,
-        SES_SENDER_ADDRESS,
         mailData.recepient?.email,
         mailData.variableData
     ).catch(async (err) => {

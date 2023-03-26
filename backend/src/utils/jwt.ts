@@ -11,7 +11,7 @@ declare module "jsonwebtoken" {
 }
 
 const generateToken = (sub:string,type:string,expiry?:string|number,org?:string) =>
-    new Promise((resolve, reject) => {
+    new Promise<string>((resolve, reject) => {
         jwt.sign(
             {
                 type,
@@ -27,7 +27,7 @@ const generateToken = (sub:string,type:string,expiry?:string|number,org?:string)
                 if (err) {
                     reject(err);
                 }
-                resolve(token);
+                token&&resolve(token);
             }
         );
     });

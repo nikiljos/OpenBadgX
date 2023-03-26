@@ -1,5 +1,7 @@
 import User from "../models/user.model"
 import { OAuth2Client } from "google-auth-library";
+import { sendMail } from "../utils/ses";
+import { APIError } from "../utils/error";
 
 const gAuthClientID=process.env.GOOGLE_AUTH_CLIENT_ID
 const client = new OAuth2Client(gAuthClientID);
@@ -8,6 +10,11 @@ interface GData{
     name:string;
     email:string;
     picture:string;
+}
+
+interface UserData{
+    id:string;
+    name:string;
 }
 
 export const checkGoogleAuth = (idToken: string) =>
@@ -26,7 +33,7 @@ export const checkGoogleAuth = (idToken: string) =>
     });
 
 
-export const handleUser=(email:string,loginType:string,name?:string,image?:string)=>new Promise<string>((resolve,reject)=>{
+export const handleUser=(email:string,loginType:string,name?:string,image?:string)=>new Promise<UserData>((resolve,reject)=>{
     User.findOne({
         email
     })
@@ -45,7 +52,10 @@ export const handleUser=(email:string,loginType:string,name?:string,image?:strin
                 .catch(err=>reject(err))
             }
 
-            resolve(data._id.toString());
+            resolve({
+                id:data.id,
+                name:data.name
+            });
         }else if(name){
             User.create({
                 email,
@@ -54,14 +64,23 @@ export const handleUser=(email:string,loginType:string,name?:string,image?:strin
                 loginMethod:[loginType]
             })
             .then(data=>{
-                resolve(data._id.toString())
+                resolve({
+                    id: data.id,
+                    name: data.name,
+                });
             })
             .catch(err=>reject(err))
         }
         else{
             //user doesn't exist and didn't get name either
-            reject(new Error("User does not exist"))
+            reject(new APIError("new_user",400))
         }
     })
     .catch(err=>reject(err))
 })
+
+export const sendMailToken = (token: string, email: string, name: string) =>
+    sendMail("loginPrompt", email,{
+        name,
+        loginUrl:`${process.env.FRONTEND_URL}/login/verify?secret=${token}`
+    });
