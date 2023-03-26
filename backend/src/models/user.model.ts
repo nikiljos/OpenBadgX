@@ -12,9 +12,6 @@ const userSchema=new Schema({
     name:{
         type:String
     },
-    password:{
-        type:String,
-    },
     isActive:{
         type:Boolean
     },
@@ -24,7 +21,6 @@ const userSchema=new Schema({
     loginMethod:[
         {
             type:String,
-            enum:["google"]
         }
     ]
 },{

@@ -26,24 +26,41 @@ export const checkGoogleAuth = (idToken: string) =>
     });
 
 
-export const checkUser=(email:string,name:string,image:string)=>new Promise<string>((resolve,reject)=>{
+export const handleUser=(email:string,loginType:string,name?:string,image?:string)=>new Promise<string>((resolve,reject)=>{
     User.findOne({
         email
     })
-    .then(data=>{
+    .then(async (data)=>{
         if(data){
+            let newData:any={}
+            if(!data.loginMethod.includes(loginType)){
+                newData.loginMethod=[...data.loginMethod,loginType]
+            }
+            if(!data.profileImage&&image){
+                newData.profileImage=image
+            }
+            
+            if(Object.keys(newData).length>0){
+                await data.updateOne(newData)
+                .catch(err=>reject(err))
+            }
+
             resolve(data._id.toString());
-        }else{
+        }else if(name){
             User.create({
                 email,
                 name,
                 profileImage:image,
-                loginMethod:["google"]
+                loginMethod:[loginType]
             })
             .then(data=>{
                 resolve(data._id.toString())
             })
             .catch(err=>reject(err))
+        }
+        else{
+            //user doesn't exist and didn't get name either
+            reject(new Error("User does not exist"))
         }
     })
     .catch(err=>reject(err))

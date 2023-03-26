@@ -1,12 +1,12 @@
 import { NextFunction, Request,Response } from "express";
-import { checkGoogleAuth,checkUser } from "../services/auth.service";
+import { checkGoogleAuth,handleUser } from "../services/auth.service";
 import jwt from "../utils/jwt"
 
 const googleAuth=async (req:Request,res:Response,next:NextFunction)=>{
     let {gAuthToken}=req.body;
     let gData=await checkGoogleAuth(gAuthToken)
 
-    let user=gData&&await checkUser(gData.email,gData.name,gData.picture)
+    let user=gData&&await handleUser(gData.email,"google",gData.name,gData.picture)
 
     let accessToken=user&&await jwt.generateToken(user,"accesstoken","1d")
     
