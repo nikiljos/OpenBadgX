@@ -1,0 +1,1 @@
+Congrats, You have recieved a badge from {{orgName}}
