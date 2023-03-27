@@ -58,4 +58,6 @@
 |Custom Hooks|✔️|[PR #8](https://github.com/kalviumcommunity/openbadgx/pull/8)|
 |Material UI|✔️|[PR #13](https://github.com/kalviumcommunity/openbadgx/pull/13)|
 |AWS S3|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
+|AWS SES|✔️|[PR #16](https://github.com/kalviumcommunity/openbadgx/pull/16)|
+|Passwordless Email Auth|✔️|[PR #17](https://github.com/kalviumcommunity/openbadgx/pull/17)|
 |...||[-](#)|
