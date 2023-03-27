@@ -41,7 +41,10 @@ function App() {
         >
           <Routes>
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route path="login">
+              <Route index element={<Login />} />
+              <Route path="verify" element={<Login />} />
+            </Route>
             <Route path="org">
               <Route index element={<OrgList />} />
               <Route path="home" element={<OrgHome />} />
