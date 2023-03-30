@@ -6,6 +6,7 @@ const errorHandler:ErrorRequestHandler=(err,req,res,next)=>{
     res.status(statusCode).send({
         success:false,
         message:err.message||"Sorry, Some error occured!",
+        code:err.detailCode,
         data:null
     })
 }

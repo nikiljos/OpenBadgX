@@ -73,7 +73,7 @@ export const handleUser=(email:string,loginType:string,name?:string,image?:strin
         }
         else{
             //user doesn't exist and didn't get name either
-            reject(new APIError("new_user",400))
+            reject(new APIError("Sorry, User Didn't Exist, Please provide Name to signup!",400,"new_user"))
         }
     })
     .catch(err=>reject(err))

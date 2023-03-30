@@ -1,3 +1,5 @@
+import { APIError } from "./error";
+
 const fetchBackend = (route, method, auth, reqBody, fileUpload) =>
   new Promise((resolve, reject) => {
     console.log("Calling Backend API -->", route, "-->", method);
@@ -18,13 +20,12 @@ const fetchBackend = (route, method, auth, reqBody, fileUpload) =>
       headers,
       body,
     })
-      .then((res) => {
-        if(res.status===401) reject(new Error("token_expired"))
-        return res.json();
+      .then(async (res) => {
+        return [await res.json(),res.status];
       })
-      .then((data) => {
+      .then(([data,code]) => {
         if (data.success) resolve(data);
-        reject(new Error(data.message));
+        reject(new APIError(data.message,code,data.code));
       })
       .catch((err) => reject(err));
   });

@@ -24,7 +24,7 @@ const useBackendData = (route, intialData, loginNotRequried) => {
       updateLoadStatus(false);
       updateErrorStatus("Not logged in!");
     }
-  }, [loginStatus.loggedIn]);
+  }, [loginStatus.loggedIn,loginStatus.localStorageCheck]);
 
   return [loadStatus, errorStatus, data];
 };

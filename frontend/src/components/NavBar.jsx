@@ -41,19 +41,19 @@ const NavBar = () => {
   //check localStorage for Token
   useEffect(() => {
     if (!loginStatus.localStorageCheck) {
+      let loggedIn=false;
       let oldToken = getLocalToken();
-      oldToken &&
-        updateLoginStatus((prev) => ({
-          ...prev,
-          localStorageCheck: true,
-          loggedIn: true,
-          token: oldToken,
-        }));
+      if(oldToken) loggedIn=true
+      updateLoginStatus((prev) => ({
+        ...prev,
+        localStorageCheck: true,
+        loggedIn,
+        token: oldToken,
+      }));
     }
 
     (async () => {
       if (loginStatus.loggedIn && !loginStatus.userDetail) {
-        // console.log("trigXX");
         let detail = await fetchBackend(
           "user/detail",
           "GET",
@@ -62,8 +62,8 @@ const NavBar = () => {
         )
           .then((data) => data.data)
           .catch((err) => {
-            console.log("Error: ", err)
-            if(err.message==="token_expired") handleTokenExpiry();
+            if(err.detailCode==="invalid_token") handleTokenExpiry();
+            else console.log("Error: ", err);
           });
         // console.log(detail);
         detail &&

@@ -20,8 +20,6 @@ const Login = () => {
   const [searchParams]=useSearchParams()
   const location=useLocation()
 
-  console.log({searchParams,location})
-
   const setAlert=(type,message)=>updateAlertData({
       type,
       message,
@@ -71,7 +69,7 @@ const Login = () => {
       email:mailInput
     })
     .catch(err=>{
-      if(err.message==="new_user"){
+      if(err.detailCode==="new_user"){
         updateSignup(true)
         updateAlertData(null)
       }
