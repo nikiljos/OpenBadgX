@@ -1,4 +1,4 @@
-import { KeyboardArrowDown } from "@mui/icons-material";
+import { Home, KeyboardArrowDown, Login, Logout, Person, Settings } from "@mui/icons-material";
 import {
   AppBar,
   Avatar,
@@ -6,15 +6,16 @@ import {
   Button,
   Container,
   IconButton,
+  ListItemIcon,
   Menu,
   MenuItem,
-  Typography,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../App";
 import fetchBackend from "../utils/fetchBackend";
 import { getLocalToken, setLocalToken } from "../utils/localToken";
+import logo from "../assets/img/logo.svg"
 
 const NavBar = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
@@ -116,15 +117,18 @@ const NavBar = () => {
           sx={{
             display: "flex",
             justifyContent: "space-between",
+            alignItems:"center",
             p: 2,
             m: 0,
           }}
         >
           {/* org selector menu */}
-          <Box>
-            <Typography variant="h6" onClick={() => navigate("/")}>
-              OpenBadgX
-            </Typography>
+          <Box onClick={() => navigate("/")} sx={{
+            height:35
+          }}>
+            <img src={logo} alt="OpenBadgX" style={{
+              height:"100%"
+            }}/>
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -174,18 +178,35 @@ const NavBar = () => {
               >
                 {loginStatus.userDetail ? (
                   [
-                    <MenuItem
-                      key="detail"
-                      onClick={() => goFromMenu("/me")}
+                    <Box
+                      sx={{
+                        m: 2,
+                      }}
+                      key="intro"
                     >
-                      {loginStatus.userDetail.name}
+                      Hi,{" "}
+                      <span style={{ fontWeight: "bold" }}>
+                        {loginStatus.userDetail.name}
+                      </span>
+                    </Box>,
+                    <MenuItem key="detail" onClick={() => goFromMenu("/me")}>
+                      <ListItemIcon>
+                        <Person fontSize="small" />
+                      </ListItemIcon>
+                      Your Profile
                     </MenuItem>,
                     <MenuItem key="login" onClick={() => goFromMenu("/login")}>
+                      <ListItemIcon>
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
                       Logout
-                    </MenuItem>,
+                    </MenuItem>
                   ]
                 ) : (
                   <MenuItem onClick={() => goFromMenu("/login")}>
+                    <ListItemIcon>
+                      <Login fontSize="small" />
+                    </ListItemIcon>
                     Login
                   </MenuItem>
                 )}
@@ -198,15 +219,27 @@ const NavBar = () => {
               >
                 {loginStatus.orgLogin ? (
                   [
-                    <MenuItem key="detail" onClick={() => goFromMenu("/org/home")}>
+                    <MenuItem
+                      key="detail"
+                      onClick={() => goFromMenu("/org/home")}
+                    >
+                      <ListItemIcon>
+                        <Home fontSize="small" />
+                      </ListItemIcon>
                       Organization Home
                     </MenuItem>,
                     <MenuItem key="login" onClick={() => goFromMenu("/org")}>
+                      <ListItemIcon>
+                        <Settings fontSize="small" />
+                      </ListItemIcon>
                       Change Organization
-                    </MenuItem>,
+                    </MenuItem>
                   ]
                 ) : (
                   <MenuItem onClick={() => goFromMenu("/org")}>
+                    <ListItemIcon>
+                      <Settings fontSize="small" />
+                    </ListItemIcon>
                     Select Organization
                   </MenuItem>
                 )}
