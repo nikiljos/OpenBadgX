@@ -21,7 +21,13 @@ const findUser=(email:string,name:string)=>new Promise(async(resolve,reject)=>{
     }
 })
 
+const updateMailPreference = (userId: string, unsubscribe: boolean) =>
+    User.findByIdAndUpdate(userId, {
+        mailUnsub:unsubscribe
+    });
+
 export default {
     userDetail,
     findUser,
+    updateMailPreference
 };

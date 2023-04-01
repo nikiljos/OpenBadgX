@@ -23,7 +23,11 @@ const userSchema=new Schema({
         {
             type:String,
         }
-    ]
+    ],
+    mailUnsub:{
+        type:Boolean,
+        default:false
+    }
 },{
     timestamps:true
 })

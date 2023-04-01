@@ -1,11 +1,14 @@
 import { SESClient,CreateTemplateCommand,UpdateTemplateCommand,SendTemplatedEmailCommand } from "@aws-sdk/client-ses"
 import MailQueue from "../models/mailQueue.model";
+import jwt from "./jwt";
 
 let queueRunning = false;
 
-const { SES_SENDER_ADDRESS, SES_SENDER_NAME } = process.env;
+const { SES_SENDER_ADDRESS, SES_SENDER_NAME, FRONTEND_URL } = process.env;
 interface Recepient {
+    id:string;
     email: string;
+    mailUnsub:boolean;
 }
 
 const client = new SESClient({
@@ -54,7 +57,6 @@ export const syncTemplate = (createNew:boolean, tempName: string,subject:string,
 
 export const triggerNextMail = async () => {
     if (queueRunning) return;
-    // console.log("Triggered");
     const mailData = await MailQueue.findOne({
         "status.queue": true,
     })
@@ -63,18 +65,39 @@ export const triggerNextMail = async () => {
 
     //base case - return if no more pending in queue
     if (!mailData) {
+        // nothing pending in queue
         queueRunning = false;
-        // console.log("Nothing in queue")
         return;
     }
 
-    console.log(mailData.recepient?.email);
+    //handle unsubscribed reciepient
+    if(mailData.recepient.mailUnsub){
+        let updateRes=await mailData
+            .updateOne({
+                status: {
+                    ...mailData.status,
+                    queue: false,
+                    success: false
+                },
+            })
+            .catch((err) => console.log("status update error", err));
+        if (!updateRes) {
+            queueRunning = false;
+            return
+        }
+        triggerNextMail();
+        return;
+    }
+
+    //generate unsub secret and url
+    mailData.variableData.unsubUrl=`${FRONTEND_URL}/mail/unsubscribe?secret=${await jwt.generateToken(mailData.recepient.id,"mail_unsub","28 days")}`
+
     const mailRes = await sendMail(
         mailData.template,
         mailData.recepient?.email,
         mailData.variableData
     ).catch(async (err) => {
-        // console.log("mail fail");
+        // mail fail
         await mailData.updateOne({
             status: {
                 ...mailData.status,
@@ -84,7 +107,7 @@ export const triggerNextMail = async () => {
         });
     });
     if (mailRes) {
-        // console.log("mail success");
+        //mail success
         let tryCount =
             (mailData.status &&
                 typeof mailData.status.tryCount &&

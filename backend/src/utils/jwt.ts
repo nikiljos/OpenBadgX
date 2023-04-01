@@ -6,7 +6,7 @@ const jwtAudience = process.env.JWT_AUDIENCE;
 declare module "jsonwebtoken" {
     export interface JwtPayload {
         type:string;
-        org: string | null;
+        org: string | undefined;
     }
 }
 
@@ -15,7 +15,7 @@ const generateToken = (sub:string,type:string,expiry?:string|number,org?:string)
         jwt.sign(
             {
                 type,
-                org: org || null,
+                org
             },
             jwtSecret,
             {
@@ -32,14 +32,14 @@ const generateToken = (sub:string,type:string,expiry?:string|number,org?:string)
         );
     });
 
-const checkToken = (token: string,type:string) =>
+const checkToken = (token: string,type:string,ignoreMaxAge?:boolean) =>
     new Promise<JwtPayload>((resolve, reject) => {
         jwt.verify(
             token, 
             jwtSecret,
             {
                 audience:jwtAudience,
-                maxAge:"2d"
+                maxAge:(ignoreMaxAge?undefined:"2d")
             }, 
             (err, decoded:any) => {
                 if (err) {

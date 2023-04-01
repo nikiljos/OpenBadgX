@@ -17,6 +17,7 @@ import OrgBadgeAward from "./pages/Org/Badge/Award";
 import OrgBadgeAssertionList from "./pages/Org/Badge/AssertionList";
 import UserHome from "./pages/User/Home";
 import PageNotFound from "./components/PageNotFound";
+import MailUnsub from "./pages/Public/MailUnsub";
 
 export const LoginContext = createContext();
 
@@ -71,6 +72,9 @@ function App() {
             </Route>
             <Route path="badge">
               <Route path=":id" element={<PublicBadgeDetail />} />
+            </Route>
+            <Route path="mail">
+              <Route path="unsubscribe" element={<MailUnsub/>} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
