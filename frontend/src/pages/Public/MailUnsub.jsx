@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import BannerAlert from "../../components/BannerAlert";
 import fetchBackend from "../../utils/fetchBackend";
-import unsubImg from "../../../assets/img/unsub.svg"
+import unsubImg from "../../assets/img/unsub.svg"
 
 const MailUnsub = () => {
   const [searchParams]=useSearchParams()
