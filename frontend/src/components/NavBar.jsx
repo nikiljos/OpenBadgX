@@ -117,18 +117,25 @@ const NavBar = () => {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems:"center",
+            alignItems: "center",
             p: 2,
             m: 0,
           }}
         >
           {/* org selector menu */}
-          <Box onClick={() => navigate("/")} sx={{
-            height:35
-          }}>
-            <img src={logo} alt="OpenBadgX" style={{
-              height:"100%"
-            }}/>
+          <Box
+            onClick={() => navigate("/")}
+            sx={{
+              height: 35,
+            }}
+          >
+            <img
+              src={logo}
+              alt="OpenBadgX"
+              style={{
+                height: "100%",
+              }}
+            />
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -153,7 +160,7 @@ const NavBar = () => {
                 <Menu open={false}></Menu>
               </Box>
             ) : (
-              ""
+              null
             )}
 
             <Box>
@@ -200,7 +207,7 @@ const NavBar = () => {
                         <Logout fontSize="small" />
                       </ListItemIcon>
                       Logout
-                    </MenuItem>
+                    </MenuItem>,
                   ]
                 ) : (
                   <MenuItem onClick={() => goFromMenu("/login")}>
@@ -233,7 +240,7 @@ const NavBar = () => {
                         <Settings fontSize="small" />
                       </ListItemIcon>
                       Change Organization
-                    </MenuItem>
+                    </MenuItem>,
                   ]
                 ) : (
                   <MenuItem onClick={() => goFromMenu("/org")}>

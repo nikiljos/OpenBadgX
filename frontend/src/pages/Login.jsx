@@ -96,6 +96,7 @@ const Login = () => {
       loggedIn: false,
       token: null,
       userDetail: null,
+      orgLogin: false,
       orgDetail: null,
     }));
     setLocalToken(null);
