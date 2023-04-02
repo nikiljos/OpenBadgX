@@ -23,7 +23,7 @@ export const LoginContext = createContext();
 
 function App() {
   const [loginStatus, updateLoginStatus] = useState({
-    localStoreCheck: false,
+    localStorageCheck: false,
     loggedIn: false,
     token: null,
     userDetail: null,

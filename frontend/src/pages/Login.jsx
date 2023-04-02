@@ -6,11 +6,13 @@ import fetchBackend from "../utils/fetchBackend";
 import { setLocalToken } from "../utils/localToken";
 import { Box, Button, Divider, FormControl, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import BannerAlert from "../components/BannerAlert";
-import { ArrowForwardIos } from "@mui/icons-material";
+import { ArrowForwardIos, Home } from "@mui/icons-material";
+import Loading from "../components/Loading";
 
 const Login = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
   const [alertData,updateAlertData]=useState(null)
+  const [reloginStatus,updateReloginStatus]=useState(false)
 
   const [mailInput,updateMailInput]=useState("")
   const [nameInput,updateNameInput]=useState("")
@@ -61,7 +63,7 @@ const Login = () => {
       return
     }
     if(signup&&nameInput===""){
-      setAlert("Name is required")
+      setAlert("info","Name is required")
       return
     }
     const initResponse=await fetchBackend("auth/mail/init","POST",null,{
@@ -80,10 +82,18 @@ const Login = () => {
     if(initResponse) setAlert("success","Please check your mail to continue login...")
   }
 
-  const handleMailVerify=async (mailToken)=>{
+  const handleMailVerify=async ()=>{
+    const token = searchParams.get("secret");
+    if (!token || token === "") {
+      setAlert(
+        "error",
+        "Invalid Secret. Please confirm wether you are using the correct URL"
+      );
+      return;
+    }
     setAlert("info","Loading...")
     let accessToken=await fetchBackend("auth/mail/verify","POST",null,{
-      mailToken
+      mailToken:token
     })
     .then(res=>res.data.accessToken)
     .catch(err=>setAlert("error",err.message))
@@ -104,28 +114,79 @@ const Login = () => {
   };
 
   useEffect(()=>{
+    updateAlertData(null)
     if(location.pathname.includes("verify")){
-      const token = searchParams.get("secret");
-      if(!token||token===""){
-        setAlert("error","Invalid Secret. Please confirm wether you are using the correct URL")
-        return
+      updateReloginStatus(false)
+      if (!loginStatus.localStorageCheck) return;
+      if (loginStatus.localStorageCheck && loginStatus.loggedIn) {
+        updateReloginStatus(true);
+        return;
       }
-      handleMailVerify(token)
+      handleMailVerify()
     }
-  },[location.pathname])
+  },[location.pathname,loginStatus.localStorageCheck])
+
+  console.log({loginStatus})
+
+  if(!loginStatus.localStorageCheck) return <Loading/>
 
   if(location.pathname.includes("verify")){
     return (
       <Box>
-        <Typography variant="h5">Please wait while we log you in...</Typography>
+        {reloginStatus ? (
+          <Box>
+            <Typography variant="body1">
+              You are already logged in as {loginStatus?.userDetail?.name}.{" "}
+              <br />
+              Do you wish to log out and continue with the new user?
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                mt: 3,
+              }}
+            >
+              Click on <span style={{ fontWeight: "bold" }}>Continue</span> to
+              login as the new user.
+              <br />
+              Click Cancel to keep previous login.
+            </Typography>
+            <Box
+              sx={{
+                mt: 3,
+              }}
+            >
+              <Button
+                variant="contained"
+                color="success"
+                onClick={handleMailVerify}
+                sx={{
+                  mr: 3,
+                }}
+              >
+                Continue
+              </Button>
+              <Button component={Link} to="/me" color="secondary">
+                Cancel
+              </Button>
+            </Box>
+          </Box>
+        ) : (
+          <Typography variant="h5">
+            Please wait while we log you in...
+          </Typography>
+        )}
+
         <BannerAlert status={alertData} />
         <Button
-          variant="contained"
+          variant="outlined"
           component={Link}
           to="/"
           sx={{
-            m: 5,
+            my: 5,
           }}
+          endIcon={<Home />}
         >
           Home
         </Button>
@@ -144,7 +205,9 @@ const Login = () => {
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
         {loginStatus.loggedIn ? (
           <>
-            <Typography variant="h6">You are logged in!</Typography>
+            <Typography variant="h6">
+              You are logged in as {loginStatus?.userDetail?.name}
+            </Typography>
             <Button
               onClick={logOut}
               variant="outlined"
@@ -181,7 +244,9 @@ const Login = () => {
                 </Typography>
               </>
             ) : (
-              <Typography variant="h6">Please give us a bit more detail to sign up!</Typography>
+              <Typography variant="h6">
+                Please give us a bit more detail to sign up!
+              </Typography>
             )}
             <Box
               sx={{
