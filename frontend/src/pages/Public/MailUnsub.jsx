@@ -10,7 +10,6 @@ const MailUnsub = () => {
   const [alertData, updateAlertData] = useState(null);
   const confirmUnsub=()=>{
     const secret=searchParams.get("secret")
-    console.log(secret)
     if(!secret||secret===""){
       updateAlertData({
         type:"error",

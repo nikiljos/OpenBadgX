@@ -18,7 +18,6 @@ const OrgBadgeCreate = () => {
     updateAlertData(null)
     const files=e.target.files
     const formData = new FormData();
-    console.log(files[0])
     formData.append("template", files[0]);
     if(files[0].size>=1000*1005){
       updateBadgeTemplate(null);
@@ -39,10 +38,8 @@ const OrgBadgeCreate = () => {
         message: err.message,
       });
     })
-    console.log(fileData)
     updateBadgeTemplate(fileData.data.file)
     updateFileLoad(false);
-    console.log(fileData)
   };
   const createBadge = async (e) => {
     // e.preventDefault();

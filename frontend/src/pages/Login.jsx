@@ -126,8 +126,6 @@ const Login = () => {
     }
   },[location.pathname,loginStatus.localStorageCheck])
 
-  console.log({loginStatus})
-
   if(!loginStatus.localStorageCheck) return <Loading/>
 
   if(location.pathname.includes("verify")){
@@ -227,7 +225,7 @@ const Login = () => {
                 <GoogleLogin
                   onSuccess={handleGAuth}
                   onError={(err) => {
-                    console.log("Login Failed", err);
+                    console.log("Google Login Failed", err);
                     setAlert("error", "Google Auth Failed");
                   }}
                 />

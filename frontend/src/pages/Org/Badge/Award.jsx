@@ -87,7 +87,7 @@ const OrgBadgeAward = () => {
   };
 
   if (detailLoad) return <Loading />;
-  if (detailError) console.log({ detailError });
+  if (detailError) console.log("Error:",detailError);
 
   return (
     <div>

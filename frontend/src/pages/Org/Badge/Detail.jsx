@@ -9,11 +9,9 @@ import { getS3Url } from '../../../utils/getS3Url';
 
 const OrgBadgeDetail = () => {
   const {id}=useParams()  
-  console.log(id)
   const [apiLoad,apiError,apiData]=useBackendData(`org/badge/${id}/detail`,{})
 
   if(apiError) return <Error message={apiError}/>
-
   if(apiLoad) return <Loading/>
 
   return (

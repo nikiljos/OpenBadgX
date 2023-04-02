@@ -66,7 +66,6 @@ const NavBar = () => {
             if(err.detailCode==="invalid_token") handleTokenExpiry();
             else console.log("Error: ", err);
           });
-        // console.log(detail);
         detail &&
           updateLoginStatus((prev) => ({
             ...prev,

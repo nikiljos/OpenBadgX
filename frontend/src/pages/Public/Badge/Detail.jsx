@@ -10,7 +10,6 @@ import { getS3Url } from "../../../utils/getS3Url";
 
 const PublicBadgeDetail = () => {
   const { id } = useParams();
-  console.log(id);
   const [apiLoad, apiError, badgeData] = useBackendData(`detail/${id}`, {
     assertions: [{}],
     org:{}
