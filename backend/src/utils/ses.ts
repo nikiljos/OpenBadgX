@@ -3,6 +3,7 @@ import MailQueue from "../models/mailQueue.model";
 import jwt from "./jwt";
 
 let queueRunning = false;
+let mailDisabled = process.env.MAIL_DISABLE === "true";
 
 const { SES_SENDER_ADDRESS, SES_SENDER_NAME, FRONTEND_URL } = process.env;
 interface Recepient {
@@ -26,6 +27,9 @@ export const sendMail = (
     fromName?: string,
     fromEmail?: string
 ) => {
+
+    if (mailDisabled) return Promise.reject(new Error("Mailer Disabled"));
+
     const sendCommand = new SendTemplatedEmailCommand({
         Source: `${fromName||SES_SENDER_NAME} <${fromEmail||SES_SENDER_ADDRESS}>`,
         Template: template,
@@ -91,7 +95,11 @@ export const triggerNextMail = async () => {
 
     //generate unsub secret and url
     mailData.variableData.unsubUrl=`${FRONTEND_URL}/mail/unsubscribe?secret=${await jwt.generateToken(mailData.recepient.id,"mail_unsub","28 days")}`
-
+    let tryCount =
+        (mailData.status &&
+            typeof mailData.status.tryCount &&
+            mailData.status.tryCount++) ||
+        1;
     const mailRes = await sendMail(
         mailData.template,
         mailData.recepient?.email,
@@ -103,16 +111,12 @@ export const triggerNextMail = async () => {
                 ...mailData.status,
                 queue: false,
                 success: false,
+                tryCount
             },
         });
     });
     if (mailRes) {
         //mail success
-        let tryCount =
-            (mailData.status &&
-                typeof mailData.status.tryCount &&
-                mailData.status.tryCount++) ||
-            1;
         let updateRes=await mailData
             .updateOne({
                 status: {

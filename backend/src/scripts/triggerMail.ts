@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import db from "../db.config";
+import db from "../config/db.config";
 
 import { triggerNextMail } from "../utils/ses";
 import User from "../models/user.model";
