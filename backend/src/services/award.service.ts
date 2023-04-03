@@ -79,9 +79,9 @@ const batchAward = (badgeId: string,orgId:string, users: [UserDetail]) =>
                 error.push(userDetail.email)
             })
         }
-        await badge?.updateOne({assertions:awardeeList})
-        .catch(err=>reject(new Error("Error in adding assertion")))
-        await MailQueue.insertMany(mailQueueData)
+        let assertionStatus=await badge?.updateOne({assertions:awardeeList})
+        .catch(err=>reject(err))
+        assertionStatus&&await MailQueue.insertMany(mailQueueData)
         .then(()=>triggerNextMail())
         .catch((err) =>
             reject(new Error("Error in queueing mails"))

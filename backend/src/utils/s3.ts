@@ -30,7 +30,7 @@ const uploadFile = (sourcePath: string, sourceName: string, fileKey: string, fil
 
             resolve(s3Response);
         } else {
-            reject("Error");
+            reject(new Error("SES Uplaod Error"));
         }
     });
 
