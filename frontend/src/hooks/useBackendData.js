@@ -18,7 +18,10 @@ const useBackendData = (route, intialData, loginNotRequried) => {
           updateLoadStatus(false);
           updateData(data);
         })
-        .catch((err) => updateErrorStatus(err.message));
+        .catch((err) => {
+          updateErrorStatus(err.message)
+          updateLoadStatus(false)
+        });
     }
     else if (loginStatus.localStorageCheck) {
       updateLoadStatus(false);

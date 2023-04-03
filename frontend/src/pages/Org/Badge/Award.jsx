@@ -80,7 +80,7 @@ const OrgBadgeAward = () => {
       .catch((err) => {
         console.log("error", err);
         updateAlertData({
-          type: "err",
+          type: "error",
           message: err.message || "Error",
         });
       });
