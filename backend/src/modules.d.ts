@@ -15,6 +15,8 @@ declare namespace NodeJS {
         MAX_AWARD_PER_BADGE: string;
         REDIS_URI: string;
         RATE_LIMIT_ENABLE: string;
-        MAX_REQ_PER_MINUTE: string;
+        HEAVY_REQ_PER_MINUTE: string;
+        UPLOAD_PER_MINUTE: string;
+        MAX_LOGIN_RESEND: string;
     }
 }
