@@ -12,8 +12,9 @@ declare namespace NodeJS {
         SES_SENDER_NAME: string;
         SES_SENDER_ADDRESS: string;
         MAIL_DISABLE: string;
-        MAX_REQ_PER_SECOND: string;
         MAX_AWARD_PER_BADGE: string;
         REDIS_URI: string;
+        RATE_LIMIT_ENABLE: string;
+        MAX_REQ_PER_MINUTE: string;
     }
 }

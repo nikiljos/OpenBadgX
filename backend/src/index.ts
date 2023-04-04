@@ -8,6 +8,8 @@ dotenv.config();
 
 import db from "./config/db.config";
 db.init();
+import redis from "./config/redis.config";
+redis.init();
 
 import router from "./routers/index";
 import errorHandler from "./middlewares/error.middleware";
