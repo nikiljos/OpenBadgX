@@ -1,5 +1,9 @@
 import Org from "../models/org.model";
 
+interface orgUpdateData{
+    name:string|undefined
+}
+
 const createOrg = (key: string, name: string, admin: string) =>
     new Promise<string>((resolve, reject) => {
         Org.create({
@@ -59,10 +63,13 @@ const orgDetail=(orgId:string)=>Org.findOne({
     _id:orgId
 }).select("name key")
 
+const updateOrgDetail=(orgId:string,data:orgUpdateData)=>Org.findByIdAndUpdate(orgId,data)
+
 export default {
     createOrg,
     isKeyAvailable,
     listOrgs,
     isOrgAdmin,
+    updateOrgDetail,
     orgDetail
 };

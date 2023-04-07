@@ -60,9 +60,22 @@ const detail=async (req:Request,res:Response)=>{
     })
 }
 
+const updateDetail = async (req: Request, res: Response) => {
+    let { orgId } = res.locals;
+    let { name } = req.body;
+    await orgService.updateOrgDetail(orgId,{
+        name
+    })
+    res.status(200).send({
+        success: true,
+        message: "Updated Successfully!",
+    });
+};
+
 export default {
     createOrg,
     listOrg,
     loginOrg,
-    detail
+    detail,
+    updateDetail
 }

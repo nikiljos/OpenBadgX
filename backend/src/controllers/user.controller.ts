@@ -20,6 +20,18 @@ const detail = async (req: Request, res: Response) => {
     }
 };
 
+const updateDetail=async (req:Request,res:Response)=>{
+    let {userId}=res.locals
+    let {name}=req.body
+    await userService.updateUser(userId,{
+        name
+    })
+    res.status(200).send({
+        success:true,
+        message:"Updated Successfully!",
+    })
+}
+
 const listBadge=async (req:Request,res:Response)=>{
     let {userId}=res.locals
     let badgeList=await assertionService.assertionList(userId)
@@ -32,5 +44,6 @@ const listBadge=async (req:Request,res:Response)=>{
 
 export default {
     detail,
+    updateDetail,
     listBadge
 };
