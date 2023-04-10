@@ -10,12 +10,12 @@ import fetchBackend from "../../utils/fetchBackend";
 const OrgDetailEdit = () => {
   const { loginStatus, updateLoginStatus } = useContext(LoginContext);
   const [alertData, updateAlertData] = useState(null);
-  const [apiLoad, apiError, userData] = useBackendData(`org/detail`, null);
+  const [apiLoad, apiError, orgData] = useBackendData(`org/detail`, null);
   const [name, updateName] = useState("");
 
   useEffect(() => {
-    updateName(userData?.userDetail?.name || "");
-  }, [userData]);
+    updateName(orgData?.name || "");
+  }, [orgData]);
 
   const changeDetail = () => {
     if (!name) {
@@ -35,8 +35,8 @@ const OrgDetailEdit = () => {
         });
         updateLoginStatus((prev) => ({
           ...prev,
-          userDetail: {
-            ...prev.userDetail,
+          orgDetail: {
+            ...prev.orgDetail,
             name,
           },
         }));
@@ -78,7 +78,7 @@ const OrgDetailEdit = () => {
           <Button variant="contained" onClick={changeDetail} sx={{ mr: 3 }}>
             Update
           </Button>
-          <Button variant="outlined" component={Link} to="/me">
+          <Button variant="outlined" component={Link} to="../home">
             Back
           </Button>
         </Box>
