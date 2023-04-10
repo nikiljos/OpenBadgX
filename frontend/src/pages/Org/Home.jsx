@@ -33,15 +33,18 @@ const OrgHome = () => {
           flexDirection: "column",
           "& a": {
             maxWidth: 300,
-            mt: 1,
+            mt: 1.5,
           },
         }}
       >
         <Button component={Link} to="../badge/new" variant="contained">
           Create a Badge
         </Button>
-        <Button component={Link} to="../badge" variant="outlined">
+        <Button component={Link} to="../badge" variant="outlined" sx={{mb:3}}>
           View Existing Badges
+        </Button>
+        <Button component={Link} to="../detail" variant="outlined">
+          Edit Org Details
         </Button>
       </Box>
     </Box>

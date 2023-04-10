@@ -18,6 +18,8 @@ import OrgBadgeAssertionList from "./pages/Org/Badge/AssertionList";
 import UserHome from "./pages/User/Home";
 import PageNotFound from "./components/PageNotFound";
 import MailUnsub from "./pages/Public/MailUnsub";
+import UserDetailEdit from "./pages/User/DetailEdit";
+import OrgDetailEdit from "./pages/Org/DetailEdit";
 
 export const LoginContext = createContext();
 
@@ -50,6 +52,7 @@ function App() {
               <Route index element={<OrgList />} />
               <Route path="home" element={<OrgHome />} />
               <Route path="new" element={<OrgCreate />} />
+              <Route path="detail" element={<OrgDetailEdit />} />
               <Route path="badge">
                 <Route index element={<OrgBadgeList />} />
                 <Route path="new" element={<OrgBadgeCreate />} />
@@ -65,6 +68,7 @@ function App() {
             </Route>
             <Route path="me">
               <Route index element={<UserHome />} />
+              <Route path="detail" element={<UserDetailEdit />} />
               <Route path="badge">
                 <Route index element={<UserBadgeList />} />
                 <Route path=":id" element={<UserBadgeDetail />} />
@@ -74,7 +78,7 @@ function App() {
               <Route path=":id" element={<PublicBadgeDetail />} />
             </Route>
             <Route path="mail">
-              <Route path="unsubscribe" element={<MailUnsub/>} />
+              <Route path="unsubscribe" element={<MailUnsub />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>

@@ -46,6 +46,14 @@ const UserHome = () => {
         >
           Award Badges
         </Button>
+
+        <Button
+          component={Link}
+          to="./detail"
+          variant="outlined"
+        >
+          Edit Profile
+        </Button>
       </Box>
     </Box>
   );
