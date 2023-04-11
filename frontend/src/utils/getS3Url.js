@@ -1,13 +1,19 @@
-export const getS3Url = (folder, file) =>{
+export const getS3Url = (folder, file,randomise=true) =>{
+  //explicitly pass randomise as false to disable random query param
+  // adding any query will force it to reload as
+  // cloudfront will not take the cache for another param 
+  // if config set to pass queries as well to s3
+  let img = "/img/placeholder.png";
   if(folder&&file){
-    return `${import.meta.env.VITE_S3_URL}/${folder}/${file}`;
+    img=`${import.meta.env.VITE_S3_URL}/${folder}/${file}`;
   }
   else if(file){
-    return `${import.meta.env.VITE_S3_URL}/${file}`;
+    img=`${import.meta.env.VITE_S3_URL}/${file}`;
   }
-  else{
-    return "/img/placeholder.png"
+  if(randomise){
+    img += ("?random=" + new Date().toJSON())
   }
+  return img
 }
   
   

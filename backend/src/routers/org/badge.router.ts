@@ -13,4 +13,7 @@ router.get("/:badge_id/detail",badgeController.badgeDetail)
 router.get("/:badge_id/assertions", awardController.listAssertions);
 router.post("/:badge_id/award",heavyRateLimit, awardController.awardBadge);
 
+// router.put("/:badge_id/detail");
+router.put("/:badge_id/template",uploadRateLimit,handleUpload,badgeController.templateUpdate);
+
 export default router

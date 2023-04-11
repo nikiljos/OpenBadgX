@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import badgeService from "../services/badge.service";
+import { APIError } from "../utils/error";
 
 const createBadge=async (req:Request,res:Response,next:NextFunction)=>{
     let {title,desc,template}=req.body
@@ -44,16 +45,30 @@ const templateUpload=async(req:Request,res:Response)=>{
         data: {
             file: {
                 id: req.file.filename,
-                // type:req.file.mimetype.split("/")[1]
                 type: req.file.mimetype,
             },
         },
     });
 }
 
+const templateUpdate=async(req:Request,res:Response)=>{
+    if(!req.file) throw new Error("No File");
+    const {badge_id:badgeId}=req.params;
+    let { orgId } = res.locals;
+    const checkOwner=await badgeService.badgeDetail(orgId,badgeId);
+    if(!checkOwner) throw new APIError("Invalid Badge/UnAuthorized",403)
+    let updateDetail=await badgeService.updateTemplate(badgeId,req.file.filename,req.file.mimetype)
+    res.status(200).send({
+        success:true,
+        message:"Tempalte update successfully",
+        data:updateDetail||null
+    })
+}
+
 export default {
     createBadge,
     listBadge,
     templateUpload,
+    templateUpdate,
     badgeDetail
 }

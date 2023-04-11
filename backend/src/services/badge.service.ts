@@ -3,9 +3,10 @@ import { Types } from "mongoose"
 import Badge from "../models/badge.model"
 import s3 from "../utils/s3";
 
+const filePath = "tmp/uploads/templates";
+
 const createBadge=(title:string,desc:string,org:string,fileName:string,fileType:string)=>new Promise(async(resolve,reject)=>{
     const _id=new Types.ObjectId()
-    const filePath = "tmp/uploads/templates";
     // const fileKey=_id+"."+fileType
     const fileKey = _id
     const s3Response=await s3
@@ -32,6 +33,25 @@ const createBadge=(title:string,desc:string,org:string,fileName:string,fileType:
             .catch((err) => reject(err));
 })
 
+const updateTemplate=(badgeId:string,fileName:string,fileType:string)=>new Promise(async (resolve,reject)=>{
+    const s3Response = await s3
+        .uploadFile(filePath, fileName, "templates/" + badgeId, fileType)
+        .catch((err) => reject(err));
+    s3Response &&
+        fs.unlink(filePath + "/" + fileName, () => {
+            // console.log("deleted",fileName)
+        });
+    Badge.findByIdAndUpdate(badgeId,{
+        template:badgeId
+    })
+    .then(res=>{
+        resolve({
+            template:badgeId
+        })
+    })
+    .catch(err=>reject(err))
+})
+
 const listBadge=(org:string)=>Badge.find({
     org
 })
@@ -46,5 +66,6 @@ const badgeDetail = (org: string,badge:string) =>
 export default {
     createBadge,
     listBadge,
-    badgeDetail
+    badgeDetail,
+    updateTemplate
 }
