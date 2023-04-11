@@ -1,6 +1,6 @@
 import Org from "../models/org.model";
 
-interface orgUpdateData{
+interface OrgUpdateData{
     name:string|undefined
 }
 
@@ -63,7 +63,7 @@ const orgDetail=(orgId:string)=>Org.findOne({
     _id:orgId
 }).select("name key")
 
-const updateOrgDetail=(orgId:string,data:orgUpdateData)=>Org.findByIdAndUpdate(orgId,data)
+const updateOrgDetail=(orgId:string,data:OrgUpdateData)=>Org.findByIdAndUpdate(orgId,data)
 
 export default {
     createOrg,

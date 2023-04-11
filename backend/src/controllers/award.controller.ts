@@ -12,10 +12,9 @@ interface UserDetail {
 
 const awardBadge=async (req:Request,res:Response)=>{
     let {recipients}:AwardBody=req.body
-    let {badge_id:badgeId}=req.params
-    let {orgId}=res.locals
+    let { badgeId } = res.locals;
     if(!Array.isArray(recipients)) throw new Error("Invalid list");
-    let result=await awardService.batchAward(badgeId,orgId,recipients)
+    let result=await awardService.batchAward(badgeId,recipients)
     res.status(200).send({
         success:true,
         message:"Awarded Successfully!",
@@ -24,9 +23,8 @@ const awardBadge=async (req:Request,res:Response)=>{
 }
 
 const listAssertions=async(req:Request,res:Response)=>{
-    let { badge_id: badgeId } = req.params;
-    let {orgId}=res.locals
-    let awardeeList=await awardService.listAwardees(badgeId,orgId)
+    let {badgeId}=res.locals
+    let awardeeList=await awardService.listAwardees(badgeId)
     res.status(200).send({
         success:true,
         message:"Fetched successfully",

@@ -27,13 +27,37 @@ const listBadge=async (req:Request,res:Response)=>{
 }
 
 const badgeDetail=async(req:Request,res:Response)=>{
-    let {badge_id:badgeId}=req.params
-    let { orgId } = res.locals;
+    let { orgId,badgeId } = res.locals;
     let detail=await badgeService.badgeDetail(orgId,badgeId)
     res.status(200).send({
         success:true,
         message:"Badge Details",
         data:detail||null
+    })
+}
+
+const badgeDetailUpdate=async(req:Request,res:Response)=>{
+    let { orgId,badgeId } = res.locals;
+    let {title,desc} = req.body;
+    const checkOwner = await badgeService.badgeDetail(orgId, badgeId);
+    if (!checkOwner) throw new APIError("Invalid Badge/UnAuthorized", 403);
+    await badgeService.updateBadgeDetail(badgeId,{
+        title,
+        desc
+    })
+    res.status(200).send({
+        success:true,
+        message:"Updated Successfully...",
+        data:null
+    })
+}
+
+const deleteBadge=async(req:Request,res:Response)=>{
+    let { badgeId } = res.locals;
+    await badgeService.deleteBadge(badgeId)
+    res.status(200).send({
+        success:true,
+        message:"Badge deleted successfully."
     })
 }
 
@@ -53,10 +77,7 @@ const templateUpload=async(req:Request,res:Response)=>{
 
 const templateUpdate=async(req:Request,res:Response)=>{
     if(!req.file) throw new Error("No File");
-    const {badge_id:badgeId}=req.params;
-    let { orgId } = res.locals;
-    const checkOwner=await badgeService.badgeDetail(orgId,badgeId);
-    if(!checkOwner) throw new APIError("Invalid Badge/UnAuthorized",403)
+    let { badgeId } = res.locals;
     let updateDetail=await badgeService.updateTemplate(badgeId,req.file.filename,req.file.mimetype)
     res.status(200).send({
         success:true,
@@ -70,5 +91,7 @@ export default {
     listBadge,
     templateUpload,
     templateUpdate,
-    badgeDetail
+    badgeDetail,
+    deleteBadge,
+    badgeDetailUpdate
 }

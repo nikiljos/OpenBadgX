@@ -31,12 +31,11 @@ interface OrgData{
     name:string
 }
 
-const batchAward = (badgeId: string,orgId:string, users: [UserDetail]) =>
+const batchAward = (badgeId: string, users: [UserDetail]) =>
     new Promise(async (resolve, reject) => {
         let success:ResArray=[],error:ResArray=[],exist:ResArray=[]; 
         let badge=await Badge.findOne({
             _id:badgeId,
-            org:orgId
         })
         .populate<{org:OrgData}>("org")
         .catch(err=>reject(err))
@@ -93,10 +92,9 @@ const batchAward = (badgeId: string,orgId:string, users: [UserDetail]) =>
         });
     });
 
-const listAwardees = (badgeId: string, orgId: string) =>
+const listAwardees = (badgeId: string) =>
     Badge.findOne({
         _id: badgeId,
-        org: orgId,
     })
         .populate("assertions.user", "name email")
         .select({

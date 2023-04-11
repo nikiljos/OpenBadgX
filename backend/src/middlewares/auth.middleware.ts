@@ -1,4 +1,5 @@
 import { NextFunction,Request,Response } from "express";
+import badgeService from "../services/badge.service";
 import { APIError } from "../utils/error";
 import jwt from "../utils/jwt"
 
@@ -32,7 +33,18 @@ const orgAuth=(req:Request,res:Response,next:NextFunction)=>{
     }
 }
 
+const badgeAuth=async (req:Request,res:Response,next:NextFunction)=>{
+    let { badge_id: badgeId } = req.params;
+    let { orgId } = res.locals;
+    if(!badgeId) next(new APIError("Invalid Badge ID",400))
+    const checkOwner = await badgeService.badgeDetail(orgId, badgeId);
+    if (!checkOwner) next(new APIError("Invalid Badge / UnAuthorized", 403));
+    res.locals.badgeId=badgeId
+    next()
+}
+
 export default {
     userAuth,
-    orgAuth
+    orgAuth,
+    badgeAuth
 }
