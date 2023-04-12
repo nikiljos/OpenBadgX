@@ -27,8 +27,8 @@
 |**Databases**|👇|🔗|🗓️|
 |MongoDB - Installations and Basics|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1cYWrXWQUlxO85u704mKppvoHq-VVdLbV)|6th March|
 |Mongoose|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|6th March|
-|CRUD Operations||[-](#)|
-|Simple API - CRUD Operations using NodeJs||[-](#)|
+|CRUD Operations|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4), [#24](https://github.com/kalviumcommunity/openbadgx/pull/24)|
+|Simple API - CRUD Operations using NodeJs|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4), [#24](https://github.com/kalviumcommunity/openbadgx/pull/24)|
 |Schemas and Models|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|6th March|
 |Indexes||[-](#)|
 |Aggregations|✔️|[PR #9](https://github.com/kalviumcommunity/openbadgx/pull/9)|
@@ -60,4 +60,6 @@
 |AWS S3|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
 |AWS SES|✔️|[PR #16](https://github.com/kalviumcommunity/openbadgx/pull/16)|
 |Passwordless Email Auth|✔️|[PR #17](https://github.com/kalviumcommunity/openbadgx/pull/17)|
+|API Rate Limiting|✔️|[PR #21](https://github.com/kalviumcommunity/openbadgx/pull/21)|
+|Redis|✔️|[PR #21](https://github.com/kalviumcommunity/openbadgx/pull/21)|
 |...||[-](#)|
