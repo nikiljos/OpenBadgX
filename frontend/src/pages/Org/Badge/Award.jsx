@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import useBackendData from "../../../hooks/useBackendData";
 import fetchBackend from "../../../utils/fetchBackend";
 import { LoginContext } from "../../../App";
 import BannerAlert from "../../../components/BannerAlert";
 import { Alert, AlertTitle, Badge, Box, Button, Icon, IconButton, TextField, Typography } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import { ArrowBack, Delete } from "@mui/icons-material";
 
 const OrgBadgeAward = () => {
   const { id } = useParams();
@@ -125,6 +125,29 @@ const OrgBadgeAward = () => {
             Award
           </Button>
         </Box>
+        <Box
+          sx={{
+            mt: 5,
+          }}
+        >
+          <Button
+            component={Link}
+            variant="outlined"
+            to="../detail"
+            startIcon={<ArrowBack />}
+            sx={{ mr: 2 }}
+          >
+            Details
+          </Button>
+          <Button
+            component={Link}
+            variant="outlined"
+            color="primary"
+            to="../assertions"
+          >
+            View History
+          </Button>
+        </Box>
       </Box>
       <BannerAlert status={alertData} />
       {alertData && alertData.type === "success" ? (
@@ -154,7 +177,7 @@ const OrgBadgeAward = () => {
               ))}
             </Alert>
           ) : null}
-          {awardResult.error&&awardResult.error.length > 0 ? (
+          {awardResult.error && awardResult.error.length > 0 ? (
             <Alert severity="error">
               <AlertTitle>Error ({awardResult.error.length})</AlertTitle>
               {awardResult.error.map((elt) => (
