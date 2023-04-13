@@ -18,7 +18,10 @@ const badgeSchema = new Schema({
     },
     assertions:[
         {
-            _id:Types.ObjectId,
+            _id:{
+                type:Types.ObjectId,
+                index:true
+            },
             name:{
                 type:String,
                 required:true
@@ -26,7 +29,8 @@ const badgeSchema = new Schema({
             user: {
                 type: Types.ObjectId,
                 ref: "users",
-                required:true
+                required:true,
+                index:true
             },
         },
     ],
