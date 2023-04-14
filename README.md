@@ -27,19 +27,19 @@
 |**Databases**|👇|🔗|🗓️|
 |MongoDB - Installations and Basics|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1cYWrXWQUlxO85u704mKppvoHq-VVdLbV)|6th March|
 |Mongoose|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|6th March|
-|CRUD Operations|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4), [#24](https://github.com/kalviumcommunity/openbadgx/pull/24)|
-|Simple API - CRUD Operations using NodeJs|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4), [#24](https://github.com/kalviumcommunity/openbadgx/pull/24)|
+|CRUD Operations|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4), [#24](https://github.com/kalviumcommunity/openbadgx/pull/24)|17th April|
+|Simple API - CRUD Operations using NodeJs|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4), [#24](https://github.com/kalviumcommunity/openbadgx/pull/24)|17th April|
 |Schemas and Models|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|6th March|
 |Indexes||[-](#)|
-|Aggregations|✔️|[PR #9](https://github.com/kalviumcommunity/openbadgx/pull/9)|
+|Aggregations|✔️|[PR #9](https://github.com/kalviumcommunity/openbadgx/pull/9)|17th April|
 |**Front-end and Full Stack**|👇|🔗|🗓️|
 |Low-fid design for your application||[-](#)|
-|High-fid design for your application||[-](#)|
+|High-fid design for your application|✔️|[Figma](https://www.figma.com/file/mcZM2Huafen6XHR6K5VNFj/OpenBadgX)|17th April|
 |ReactJS app initialization|✔️|[PR #3](https://github.com/kalviumcommunity/openbadgx/pull/3)|3rd April|
 |Application components created|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|3rd April|
 |Application deployed|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|3rd April|
-|IDE Setup|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1YmTkldijAOL4Ud4fXhDXhL1tDXxeypmZ)|
-|NodeJs REPL|✔️|[Screenshots](https://drive.google.com/drive/folders/1cHErBwimXXWMiwhadg4yz2noo6UMw_nv)|
+|IDE Setup|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/1YmTkldijAOL4Ud4fXhDXhL1tDXxeypmZ)|17th April|
+|NodeJs REPL|✔️|[Screenshots](https://drive.google.com/drive/folders/1cHErBwimXXWMiwhadg4yz2noo6UMw_nv)|17th April|
 |Using the public folder to serve files|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|3rd April|
 |Postman Use for Testing|✔️|[Screenshots](https://drive.google.com/drive/u/0/folders/13uE0Cd6R2MFbk2D8W8dvTnb7pqzqAPLt)|3rd April|
 |Authentication|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|3rd April|
