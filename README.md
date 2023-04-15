@@ -45,21 +45,18 @@
 |Authentication|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|3rd April|
 |Deployment|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|3rd April|
 |**Extra Topics**|👇|🔗|🗓️|
-|Type Interface|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
-|Type Declaration Merging|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
-|`dotenv`|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
+|Type Interface, Declaration Merging|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|17th April|
 |Google OAuth|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |JWT|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|
 |React Router|✔️|[PR #3](https://github.com/kalviumcommunity/openbadgx/pull/3)|
-|`express-async-errors` for handling async express errors|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4)|
-|CORS|✔️|[PR #5](https://github.com/kalviumcommunity/openbadgx/pull/5)|
-|Custom Express error middleware|✔️|[PR #6](https://github.com/kalviumcommunity/openbadgx/pull/6)|
+|`express-async-errors` for handling async express errors|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4)|17th April|
+|Custom Express error middleware, Extended class for API errors|✔️|[PR #6](https://github.com/kalviumcommunity/openbadgx/pull/6), [#15](https://github.com/kalviumcommunity/openbadgx/pull/15)|17th April|
 |`useState`, `useEffect`, `useContext` Hooks|✔️|[PR #7](https://github.com/kalviumcommunity/openbadgx/pull/7)|
-|Custom Hooks|✔️|[PR #8](https://github.com/kalviumcommunity/openbadgx/pull/8)|
-|Material UI|✔️|[PR #13](https://github.com/kalviumcommunity/openbadgx/pull/13)|
-|AWS S3|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|
-|AWS SES|✔️|[PR #16](https://github.com/kalviumcommunity/openbadgx/pull/16)|
-|Passwordless Email Auth|✔️|[PR #17](https://github.com/kalviumcommunity/openbadgx/pull/17)|
-|API Rate Limiting|✔️|[PR #21](https://github.com/kalviumcommunity/openbadgx/pull/21)|
-|Redis|✔️|[PR #21](https://github.com/kalviumcommunity/openbadgx/pull/21)|
+|Custom Hooks|✔️|[PR #8](https://github.com/kalviumcommunity/openbadgx/pull/8)|17th April|
+|Material UI|✔️|[PR #13](https://github.com/kalviumcommunity/openbadgx/pull/13)|17th April|
+|AWS S3|✔️|[PR #15](https://github.com/kalviumcommunity/openbadgx/pull/15)|17th April|
+|AWS SES|✔️|[PR #16](https://github.com/kalviumcommunity/openbadgx/pull/16)|17th April|
+|Passwordless Email Auth|✔️|[PR #17](https://github.com/kalviumcommunity/openbadgx/pull/17)|17th April|
+|API Rate Limiting|✔️|[PR #21](https://github.com/kalviumcommunity/openbadgx/pull/21)|17th April|
+|Redis|✔️|[PR #21](https://github.com/kalviumcommunity/openbadgx/pull/21)|17th April|
 |...||[-](#)|
