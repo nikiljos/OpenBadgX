@@ -30,7 +30,7 @@
 |CRUD Operations|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4), [#24](https://github.com/kalviumcommunity/openbadgx/pull/24)|17th April|
 |Simple API - CRUD Operations using NodeJs|✔️|[PR #4](https://github.com/kalviumcommunity/openbadgx/pull/4), [#24](https://github.com/kalviumcommunity/openbadgx/pull/24)|17th April|
 |Schemas and Models|✔️|[PR #2](https://github.com/kalviumcommunity/openbadgx/pull/2)|6th March|
-|Indexes||[-](#)|
+|Indexes|✔️|[PR #25](https://github.com/kalviumcommunity/openbadgx/pull/25)|17th April|
 |Aggregations|✔️|[PR #9](https://github.com/kalviumcommunity/openbadgx/pull/9)|17th April|
 |**Front-end and Full Stack**|👇|🔗|🗓️|
 |Low-fid design for your application||[-](#)|
