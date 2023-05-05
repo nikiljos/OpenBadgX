@@ -13,6 +13,10 @@ An open-source platform for organizations and individuals to create, customize a
 - React JS
 - Material UI
 
+## Product Tour
+### `< 1 minute`
+https://user-images.githubusercontent.com/57913645/236442252-2273ab55-c50b-450d-ad0c-62862bc385be.mp4
+
 ## Development 
 
 👉 **Clone the repo and enter the folder.**
