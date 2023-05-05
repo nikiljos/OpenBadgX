@@ -1,4 +1,5 @@
 ## OpenBadgX Frontend
 
-**Frontend Live URL**  
-[openbadgx.netlify.app](https://openbadgx.netlify.app)
+Basic Frontend built using `React` and `Material UI`. 
+ 
+Ideal starting point to customize your self-hosted frontend.
