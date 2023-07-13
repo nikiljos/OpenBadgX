@@ -38,5 +38,4 @@ yarn-error.log*
 .vercel
 
 #caprover
-captain-definition
 *.tar
